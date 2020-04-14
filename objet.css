@@ -34,7 +34,6 @@
 
 .corps {
 
-
 }
 
 .taille {
@@ -59,20 +58,22 @@
  	background-color:#FDD600;
  }
 
- .klapr-bg2{
- 	background-color:white;
- }
 
  .couleur2{
  	color:black;
- 	font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 	font-family: Roboto;
  }
 
 
- .image_item1{
-
+ .image_item1{ 
 height: 432.08px;
 }
+
+.container {
+    margin-right: 0;
+    margin-left: 0;
+}
+
 
 
 .titre_item {
@@ -87,7 +88,7 @@ color:#000000;
 .soustitre_item{
 font-family: Roboto;
 font-style: normal;
-font-weight: bold;
+font-weight: normal;
 font-size: 20px;
 line-height: 23px;
 
@@ -104,6 +105,31 @@ line-height: 23px;
 color: #000000;
 }
 
+.btn_bg{
+position: absolute;
+width: 384px;
+height: 47px;
+
+
+color: #FFFFFF;
+background: #4F4537;
+border: 1px solid #000000;
+box-sizing: border-box;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+}
+
+.btn_text{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 40px;
+line-height: 47px;
+text-align:center;
+
+
+color: #FFFFFF;
+}
 
 /* footer_bg */
 
