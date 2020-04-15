@@ -9,3 +9,8 @@
     height: 251px;
     background-color: #4F4537;
 }
+
+.imgcarousel {
+    width: fit-content;
+    padding-left: 33%;
+}
