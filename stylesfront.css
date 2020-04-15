@@ -1,0 +1,97 @@
+/*CSS pour le front (partie utilisateur)*/
+
+
+/*Général*/
+
+/*barre de recherche*/
+
+.recherche{
+
+height: 50px;
+text-align: center;
+margin: 0 auto;
+width:20%;
+    
+    
+
+}
+
+/*CSS pour afficher un item*/
+
+.item{
+    
+    height:390px;
+    width:92%;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius: 5px; 
+    background: #A09776;
+    margin:0 auto;
+
+}
+
+img{
+   
+   width:100%;
+    height:65%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.description{
+    height:35%;
+    text-align: center;
+}
+
+.btn-order{
+    width :50%;
+    padding: 4px;
+    font-size: 15px;
+    color: #fff;
+    background-color:#4F4537;
+    
+}
+
+
+
+/*Pagee d'accueil*/
+
+
+.info{
+    text-align: center;
+    margin:0 auto;
+    height:300px;
+}
+
+
+/*Page catégorie*/
+
+.typetitre{
+    margin-top:20px;
+    margin-left:20px;
+    margin-top:20px;
+    
+}
+
+
+/*panier*/
+
+
+.totalpanier{
+    padding:10px;
+    width:300px;
+    background:#A09776;
+    border-radius: 5px;
+}
+
+.passercommande{
+    width:100%;
+    background:#4F4537;
+    border-radius: 10px;
+    color:#fff;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    
+}
