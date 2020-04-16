@@ -30,10 +30,17 @@ border-radius: 20px;
 text-align: center;
 }
 
+.form_2{
+width: 300px;
+height: 98px;
+background: rgba(160, 151, 118, 0.4);
+border-radius: 20px;
+text-align: center;
+}
+
 
 .corps{
 top: 373px;
-
 background: #F8F7F6;
 }
 
@@ -62,6 +69,14 @@ text-align: center;
 
 color: #000000;
 }
+
+.champ{
+font-family: Roboto;
+font-size: 40px;
+
+color: #000000;
+}
+
 .image_bancaire_CB{
 	height: 170px;
 }
@@ -70,4 +85,42 @@ color: #000000;
 }
 .image_bancaire_AX{
 	height: 178px;
+}
+
+.champ_profil{
+font-family: Roboto;
+font-size: 20px;
+
+color: #000000;
+}
+
+.champ_modifier{
+	font-family: Roboto;
+font-size: 30px;
+font-style:bold;
+color: #000000;
+}
+
+.photo_circle{
+position:absolute;
+left: 1100px;
+top: 170px;
+width: 180px;
+height: 180px;
+border-radius:50%;
+}
+
+.photo_circle_modifier{
+position:absolute;
+left: 1135px;
+top: 230px;
+font-size:30px;
+}
+
+#mouse_over {
+  opacity: 0;
+}
+
+#mouse_over:hover {
+  opacity: 1;
 }
