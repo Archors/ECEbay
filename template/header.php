@@ -57,7 +57,7 @@
                         <a class="dropdown-item" href="#">Meilleur offre</a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Vendre</a></li>
+                <li class="nav-item"><a class="nav-link" href="../vendeur/form_vendeur.php">Vendre</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Admin

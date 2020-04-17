@@ -41,17 +41,17 @@
             <div class="form-row">
       
                 <div class="col-md-6">
-                <div class="mx-sm-3 mb-2">
-                <div align=center>
-                         <a href="klapr.fr"class="form-control form_choix text_form"> <span class="text_choix"> Accéder à mon compte </span> </a>
+                <div align=center class="mx-sm-3 mb-2">
+                <div class= "btn_sub align-items-center">
+                <button class="btn_sub" href="#"> <span class="btn_sub_text2"> Acceder à mon compte </span> </button>
                 </div>
               </div>
             </div>
 
-                <div class="col-md-6">
+                <div align=center class="col-md-6">
                 <div class="mx-sm-3 mb-2">
-                <div align=center>
-                         <a href="klapr.fr"class="form-control form_choix text_form"> <span class="text_choix"> Accéder à mes items </span> </a>
+                <divr class= "btn_sub">
+                <button class="btn_sub" href="#"> <span class="btn_sub_text2"> Acceder à mes items </span> </button>
                 </div>
               </div>
             </div>           
