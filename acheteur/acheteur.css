@@ -1,0 +1,127 @@
+.totalpanier{
+    padding:20px;
+    width:400px;
+    background:#353434;
+    border-radius: 10px;
+}
+
+.passercommande{
+    width:100%;
+    background:#FFFFFF;
+    border-radius: 5px;
+    color:#000000;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    
+}
+.titrecat{
+
+font-family: Open Sans;
+
+font-size: 80px;
+
+text-align: center;
+
+color: #4F4537;
+
+}
+
+.separation{
+
+height: 0px;
+    margin-left: auto;
+    margin-right: auto;
+
+top: 345px;
+
+border: 1px solid #4F4537;
+    text-align: center;
+}
+
+.form{
+background: rgba(53, 52, 52, 0.7);
+border-radius: 5px;
+width: 526px;
+height: 50px;
+font-family: Open Sans;
+font-size: 25px;
+text-align: center;
+    color:white;
+}
+
+.form_1{
+background: rgba(53, 52, 52, 0.7);
+border-radius: 5px;
+width: 326px;
+height: 50px;
+font-family: Open Sans;
+font-size: 25px;
+text-align: center;
+    color:white;
+}
+
+::placeholder{
+    color:white;
+    font-family: Open Sans;
+    font-style: italic;
+}
+
+.corps{
+top: 373px;
+
+background: #F8F7F6;
+}
+
+.btn_sub{
+background: #353434;
+height: 58px;
+width: 326px;
+border-radius:10px;
+}
+
+.btn_sub_text2{
+font-family: Open Sans;
+font-weight: bold;
+font-size: 25px;
+align-items: center;
+text-align: center;
+color: #FFFFFF;
+}
+
+.image_bancaire_CB{
+	height: 170px;
+}
+.image_bancaire_MCard{
+	height: 181px;
+}
+.image_bancaire_AX{
+	height: 178px;
+}
+
+.total_texte {
+color:#FFFFFF;
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 25px;
+}
+
+.montant {
+color:#FFFFFF;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+}
+
+.line{
+width: 86px;
+height:0px;
+border: 1px solid #000000;
+transform: rotate(90deg);
+}
