@@ -1,6 +1,23 @@
-.btn_ajouter{
+.form{
 margin:0 auto;
+    text-align:center;
 
+}
+.form-actions{
+margin:0 auto;
+    text-align:center;
+
+}
+
+.ajouter{
+margin:0 auto;
+    text-align:center;
+
+}
+
+.validationsup{
+    background-color: #D3D3D3;
+    padding:15px;
 }
 
 .titrecat{
@@ -15,6 +32,12 @@ color: #4F4537;
 
 }
 
+.rounded-circle{
+    width:225px;
+    height:225px;
+}
+
+/*
 .separation{
 
 height: 0px;
@@ -75,4 +98,4 @@ color: #000000;
 }
 .image_bancaire_AX{
 	height: 178px;
-}
+}*/

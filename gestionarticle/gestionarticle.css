@@ -34,7 +34,14 @@ img{
 
 /*ajouter vendeur ou item*/
 
-.btn_ajouter{
+.form{
 margin:0 auto;
+    text-align:center;
 
 }
+.form-actions{
+margin:0 auto;
+    text-align:center;
+
+}
+

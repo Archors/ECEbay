@@ -29,7 +29,31 @@ class Database
     {
         self::$connection = null;
     }
+
 }
+  
+    if(!empty($_GET['id'])) 
+    {
+        $id = checkInput($_GET['id']);
+    }
+
+    if(!empty($_POST)) 
+    {
+        $id = checkInput($_POST['id']);
+        $db = Database::connect();
+        $statement = $db->prepare("DELETE FROM vendeur WHERE id = ?");
+        $statement->execute(array($id));
+        Database::disconnect();
+        header("Location: gestionVendeursAdmin"); 
+    }
+
+    function checkInput($data) 
+    {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+    }
 ?>
 
 
@@ -47,6 +71,7 @@ class Database
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
+
     <link rel="stylesheet" href="admin.css">
         
     </head>
@@ -58,64 +83,47 @@ class Database
         
     <!-- Header navbar-->
         
-   <?php include '../template/header.php'; ?>
+        <?php include '../template/header.php'; ?>
         
         <!-- titre de la categorie -->
         <div class="container">
         
         <div class="titrecat">
-        Les vendeurs
+        Supprimer un vendeur
             <div class="container separation"></div>
         </div>
         <br><br>
-        <div class="container-fluid">
+            
+        </div>    
+            
+       <div class="container validationsup">
             <div class="row">
-                <table class="table table-stripped">
-                    <thead style="text-align:center">
-                        <tr>
-                            <th>Pseudo</th>
-                            <th>Email</th>
-                            <th>Supprimer</th>
-                        </tr>
-                       
-                        
-                    </thead>
-                    <tbody>
-                     <?php
-                        $db = Database::connect();
-                        $statement = $db->query('SELECT vendeur.id, vendeur.pseudo, vendeur.mail FROM vendeur ORDER BY vendeur.id ');
-                        while($vendeur = $statement->fetch()) 
-                        {
-                            echo '<tr style="text-align:center">';
-                            echo '<td>'. $vendeur['pseudo'] . '</td>';
-                            echo '<td>'. $vendeur['mail'] . '</td>';
-    
-                            echo '<td>';
-                            echo '<a type="button" class="btn btn-info" href="voirVendeur.php?id='.$vendeur['id'].'">Aperçu</a>';
-                            echo ' ';
-                            echo '<a type="button" class="btn btn-danger" href="supprimerVendeur.php?id='.$vendeur['id'].'">Supprimer</a>';
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-                        Database::disconnect();
-                      ?>
-                    </tbody>
-                </table>
-            
-            <a type="button" class="btn btn-primary ajouter" href="ajouterVendeur.php">Ajouter</a>
-            
-            </div>    
-            
-        </div>
-        
+
+                <form class="form" action="supprimerVendeur.php" role="form" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id;?>"/>
+                    <h4>Etes vous sur de vouloir supprimer ce vendeur ?</h4>
+                    </br>
+                    <div class="form-actions">
+                      <button type="submit" class="btn btn-success">Oui</button>
+                      <a class="btn btn-default" href="gestionVendeursAdmin.php">Annuler</a>
+                    </div>
+                </form>
+            </div>
+        </div>   
+                    
+                
+    </div>
+         
 
         </br></br>
 
-        </div>
         
-        <?php include '../template/footer.php'; ?>
-
+        
+  <?php include '../template/footer.php'; ?>
 
         
     </body>
 </html>
+
+
+

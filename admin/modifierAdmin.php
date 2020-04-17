@@ -32,6 +32,13 @@ class Database
 
 }
 
+
+ if(!empty($_GET['id'])) 
+    {
+        $id = checkInput($_GET['id']);
+    }
+
+
 $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$imageprofilError = $imageprofil = $imagefondError = $imagefond = "";
     
     
@@ -49,7 +56,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         $imageExtension1     = pathinfo($imagePath1,PATHINFO_EXTENSION);
         $imageExtension2     = pathinfo($imagePath2,PATHINFO_EXTENSION);
         $isSuccess          = true;
-        $isUploadSuccess    = false;
+        $isUploadSuccess    = true;
 
         
         if(empty($pseudo)) 
@@ -74,14 +81,10 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $isSuccess = false;
         } 
         
-        if(empty($imageprofil)) 
+    
+        if($imageprofil != "")
         {
-            $imageprofilError = 'Ce champ ne peut pas être vide';
-            $isSuccess = false;
-        }
-        else
-        {
-            $isUploadSuccess = true;
+    
             if($imageExtension1 != "jpg" && $imageExtension1 != "png" && $imageExtension1 != "jpeg" && $imageExtension1 != "gif" ) 
             {
                 $imageprofilError = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
@@ -100,15 +103,12 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                     $imageprofilError = "Il y a eu une erreur lors de l'upload";
                     $isUploadSuccess = false;
                 } 
-            } 
+            }
         }
         
-        if(empty($imagefond)) 
-        {
-            $imagefondError = 'Ce champ ne peut pas être vide';
-            $isSuccess = false;
-        }
-        else
+        
+  
+        if($imagefond != "")
         {
             $isUploadSuccess = true;
             if($imageExtension2 != "jpg" && $imageExtension2 != "png" && $imageExtension2 != "jpeg" && $imageExtension2 != "gif" ) 
@@ -132,15 +132,65 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             } 
         }
         
+       
         
         if($isSuccess && $isUploadSuccess) 
         {
-            $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO vendeur (pseudo, mail, motdepasse, photoprofil, photofond) values(?, ?, ?, ?, ?)");
-            $statement->execute(array($pseudo, $mail,$password,$imageprofil,$imagefond));
-            Database::disconnect();
-            header("Location: gestionVendeursAdmin.php");
+            
+            if($imageprofil == "")
+            {
+                if($imagefond == "")
+                {
+                    $db = Database::connect();
+                    $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$password,$id));
+                    Database::disconnect();
+                    
+    
+                    header("Location: profilAdmin.php?id=$id");
+                }
+                else{
+                    $db = Database::connect();
+                    $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imagefond = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$password, $imagefond,$id));
+                    Database::disconnect();
+                    header("Location: profilAdmin.php?id=$id");
+                }
+            }
+            else{
+                if($imagefond == "")
+                {
+                    $db = Database::connect();
+                    $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imageprofil = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
+                    Database::disconnect();
+                    header("Location: profilAdmin.php?id=$id");
+                }
+                else{
+                    $db = Database::connect();
+                $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imageprofil = ?, imagefond = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
+                    Database::disconnect();
+                    header("Location: profilAdmin.php?id=$id");
+                }
+            }
+    
         }
+    }
+
+
+    else 
+    {
+        $db = Database::connect();
+        $statement = $db->prepare("SELECT * FROM admin where id = ?");
+        $statement->execute(array($id));
+        $admin = $statement->fetch();
+        $pseudo          = $admin['pseudo'];
+        $mail    = $admin['mail'];
+        $password         = $admin['password'];
+        $imageprofil       = $admin['imageprofil'];
+        $imagefond          = $admin['imagefond'];
+        Database::disconnect();
     }
 
     function checkInput($data) 
@@ -186,7 +236,8 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         <div class="container">
         
         <div class="titrecat">
-        Ajouter un Vendeur
+        Modifier Profil
+
             <div class="container separation"></div>
         </div>
         <br><br>
@@ -194,7 +245,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="ajouterVendeur.php" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="<?php echo 'modifierAdmin?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
@@ -208,7 +259,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                         <span class="help-inline"><?php echo $mailError;?></span>
                     </div>
                     <div class="form-group">
-                        <label for="name">Password:</label>
+                        <label for="password">Password:</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?php echo $password;?>">
                         <span class="help-inline"><?php echo $passwordError;?></span>
                     </div>
@@ -218,7 +269,8 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                      <div class="form-group">
                         <label for="imageprofil">Sélectionner une image profil:</label>
                          </br>
-                        <input type="file" id="imageprofil" name="imageprofil"> 
+                        <input type="file" id="imageprofil" name="imageprofil" > 
+                        <span class="help-inline"><?php echo $imageprofil;?></span>
                         <span class="help-inline"><?php echo $imageprofilError;?></span>
                         </br>
                     </div>
@@ -228,6 +280,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                         <label for="imagefond">Sélectionner une image fond:</label>
                         </br>
                         <input type="file" id="imagefond" name="imagefond"> 
+                        <span class="help-inline"><?php echo $imagefond;?></span>
                         <span class="help-inline"><?php echo $imagefondError;?></span>
                     </div>
                    
@@ -235,11 +288,15 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                 </div>
                
                 <div class="form-actions">
-                        <button type="submit" class="btn btn-success"></span> Ajouter</button> 
+                        <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Modifier</button>
+                        
                    </div>
                </div>
                    
-            </form>                             
+               </form>
+            
+        </div>   
+                    
                 
     </div>
          
