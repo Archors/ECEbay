@@ -78,8 +78,9 @@
                         <span class="total_texte">Total : </span>
                             <span class="montant"> 600€ </span>
                         <br>
+                    
                         
-                        <button class="passercommande">Passer Commande</button>
+                        <a href="form_connexion.php" class="passercommande">Passer Commande</a>
                     </div>
                    
                         

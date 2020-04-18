@@ -77,7 +77,7 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -95,7 +95,7 @@
                         <br>
                         <br>
 
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -112,7 +112,7 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -134,7 +134,7 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -152,7 +152,7 @@
                         <br>
                         <br>
 
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      
@@ -170,7 +170,7 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      

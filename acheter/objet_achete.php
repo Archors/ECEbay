@@ -36,11 +36,11 @@
         
         <div class="titrecat">
             <!-- titre de la categorie -->
-        Bon pour le Musée
+        Félicitations !
         <!-- Diminuer taille -->
         <div class="container separation"></div>
         </div>
-        <br><br>
+        <br>
         <div class="container-fluid">
             
             
@@ -55,20 +55,13 @@
                 
                 </div>
 
-
-                <div class="col-md-7">
-                <p class="titre_item"> Montre du Général de Gaulle </p>
+                <div class="col-md-5 offset-md-1">
+                <br><br><br><br><br><br><br>
+                <p> <span class="texte_item">Livraison prévue le : </span> <span class="text_item_bold"> 20/04/2020</span> </p>
                 <br>
+                <p class="texte_item"> <span> Montre du Général de Gaulle </span> </p>
                 <br>
-                <br>
-                <p class="texte_item"> <b> description :</b> dolor sit amet, consectetur adipiscing elit. Maecenas eget nibh et ex fermentum vulputate. Proin ullamcorper nisi nunc, ut venenatis nisl sodales dictum. Duis nec est ultrices, maximus lorem et, dictum arcu. Pellentesque malesuada dui malesuada augue rhoncus posuere. Maecenas vel ipsum libero. </p>
-                <br>
-                <p class="texte_item"> <b> Vendeur : </b> Nunc in gravida velit. </p>
-                <br>
-                <p class="texte_item"> <b> Prix : </b> 1240$ </p>
-
-                <br> <br>
-                <a href="../acheteur/Panier.php" class="btn_bg btn_text">Ajouter au panier </a>
+                <p> <span class="texte_item"> Prix : </span> <span class="text_item_bold"> 1240$ </span> </p>
 
 
                 </div>

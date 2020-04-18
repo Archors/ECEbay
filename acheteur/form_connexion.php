@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <link href="vendeur.css" rel="stylesheet" type="text/css" />
+     <link href="acheteur.css" rel="stylesheet" type="text/css" />
 
     
     <!-- Logo ECE Bay --> 
@@ -19,53 +19,45 @@
 
   <body>
 
-    <?php include '../template/header.php'; ?>
-
+<?php include '../template/header.php'; ?>
 <!-- <div class="container"> </div> rajouter des marges -->
-    <div class="container_fluid">
-     <br>       
-<div class="titrecat">
-        Mon Espace
-            <div class="container separation"></div>
-        </div>
+        <!-- titre de la categorie -->
+        <div class="container">
+        
+        <div class="titrecat">
+        Bienvenue
+        <!-- Diminuer taille -->
+          <div class="container separation"></div>
         </div>
 
-<div class="container_fluid">
-        <div class="corps">
+<div class="container-fluid">
             <br>
             <br>
-            <br>
-            <br>
-            <br>
+                
 
-            <div class="form-row">
-      
-                <div class="col-md-6">
-                <div align=center class="mx-sm-3 mb-2">
-                <div class= "btn_sub align-items-center">
-                <button class="btn_sub" href="#"> <span class="btn_sub_text2"> Acceder à mon compte </span> </button>
-                </div>
-              </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div align="center">
+                       <a class="btn btn_sub" href="form_acheteur.php"> <span class="btn_sub_text3"> Se Connecter </span> </a>          
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div align="center">
+                       <a class="btn btn_sub" href="form_acheteur.php"> <span class="btn_sub_text3"> Inscrire </span> </a>      
+                    </div>
+                  </div>
+
+                </div>       
+                
+                </form>
+
+          </div>
             </div>
-
-                <div align=center class="col-md-6">
-                <div class="mx-sm-3 mb-2">
-                <divr class= "btn_sub">
-                <button class="btn_sub" href="#"> <span class="btn_sub_text2"> Acceder à mes items </span> </button>
-                </div>
-              </div>
-            </div>           
-            
-          
-        </div>
-      
-    </div>
-  </div>
+      <br> <br>
 
 
 <?php include '../template/footer.php'; ?>
-
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

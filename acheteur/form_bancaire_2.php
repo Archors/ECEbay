@@ -112,14 +112,18 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div align="center">
-                       <button type="submit" class="btn_sub"> <span class="btn_sub_text2"> Confirmer </span> </button>         
+                       <button type="submit" class="btn_sub"> <a href="../acheter/objet_achete.php" class="btn_sub_text2"> Confirmer </a> </button>         
                     </div>
                   </div>
                 </div>  
 
+          </form>
+
 
 
             </div>
+          </div>
+
 
       <?php include '../template/footer.php'; ?>
 
