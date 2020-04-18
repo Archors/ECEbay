@@ -67,9 +67,15 @@
                 <br>
                 <p class="texte_item"> <b> Prix : </b> 1240$ </p>
 
-                <br> <br>
+                
                </div>
              </div>
+
+             <div class="row">
+                <div class="col-md-8 offset-md-5">
+                    <span class="alerte"> Il nous reste x proposition </span>
+                </div>
+            </div>
 
               <div class="row">
 
@@ -79,7 +85,7 @@
                 </div>
                 
                 <div class="col-md-5">
-                 <button type="submit" class="btn_bg_2 btn_text_2"> <a href="../acheteur/Panier.php "class="btn_text_2"> Négocier </a> </button>
+                <button type="submit" class="btn_bg_2 btn_text_2"> <a href="../acheteur/Panier.php "class="btn_text_2"> Négocier </a> </button>
                </div>
             
               </div>

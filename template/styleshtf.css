@@ -74,15 +74,16 @@
     border: 1px solid #000;
     text-align: center;
 }
-
-
 /*footer*/
 
 .footer {
+    height:230px;
     background: #394351;
     font-family: Open Sans;
     font-size: 15px;
     color: #ffffff;
     text-align: center;
-    bottom:0px;
+    position:absolute;
+
+    width:100%;
 }

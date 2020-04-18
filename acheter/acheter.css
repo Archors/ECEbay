@@ -256,3 +256,11 @@ width: 304px;
 height: 0px;
 border: 1px solid #000000;
 }
+
+.alerte{
+    font-family: Open Sans;
+font-size: 15px;
+align-items: center;
+text-align: center;
+color: #BB0B0B;
+}
