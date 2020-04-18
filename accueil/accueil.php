@@ -31,35 +31,29 @@
     <section id="skills">
         <div class="red-divider"></div>
         <div class="heading">
-            <h2>Principe</h2>
+            
         </div>
         <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <center><img class="d-block" src="images/expo.png" alt="First slide"></center>
+                <div class="carousel-item active" style="background-image:url(../images/carousel1.jpeg)">
+                    <center><h1 style="color:white"><b>Férailles et Trésors</b></h1></center>
                     <br><br>
                 </div>
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo2.png" alt="Second slide"></center>
+                <div class="carousel-item" style="background-image:url(../images/wallpaper_musee.jpeg)">
+                    <center><h1 style="color:white"><b>Bons pour le musée</b></h1></center>
                     <br><br>
                 </div>
 
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo3.png" alt="Third slide"></center>
+                <div class="carousel-item" style="background-image:url(../images/wallpaper_VIP.jpeg)">
+                    <center><h1 style="color:white"><b>Accessoirs VIP</b></h1></center>
                     <br><br>
-
                 </div>
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo4.png" alt="Fourth slide"></center>
-                    <br><br>
 
-                </div>
                 <a class="carousel-control-prev" href="#myCarousel" data-slide="prev" role="button">
                     <span class="fas fa-chevron-left fa-2x"></span>
                 </a>
@@ -76,6 +70,7 @@
     <div class="container-fluid">
         </br>
         <h3 style="text-align:center">Articles recommandés</h3>
+     <div class="container separation"></div>
         </br>
         <div class="items">
             <div class="row">
@@ -158,9 +153,9 @@
         </br>
     </div>
 
-    <div class="container-fluid" style="background-color:#A09776">
+    <div class="container-fluid" style="background-color:#394351">
         <br>
-        <h3 style="text-align:center">Une question ou un retour ?</h3>
+        <h3 style="text-align:center; color:white">Une question ou un retour ?</h3>
         <br>
         <div class="container">
             <div class="form-group "> <input type="text " class="form-control " placeholder="Votre nom: " name=" "> </div>
@@ -170,6 +165,36 @@
 
         </div>
 
+        <br><br>
+    </div>
+
+    <div class="container">
+        <br>
+
+        <div class="row ">
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+            
+            </div>
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+              
+            </div>
+        </div>
+  
         <br><br>
     </div>
 
