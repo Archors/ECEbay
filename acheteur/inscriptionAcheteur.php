@@ -1,5 +1,9 @@
 <?php
 
+ session_start();                 
+ 
+
+
 class Database
 {
     private static $dbHost = "localhost";
@@ -32,24 +36,18 @@ class Database
 
 }
 
-$pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$imageprofilError = $imageprofil = $imagefondError = $imagefond = "";
+$pseudoError = $mailError = $passwordError= $nomError= $prenomError = $pseudo = $mail = $password= $nom = $prenom = "";
     
     
     if(!empty($_POST)) 
     {
         $pseudo               = checkInput($_POST['pseudo']);
-        $mail        = checkInput($_POST['mail']);
+        $nom               = checkInput($_POST['nom']);
+        $mail               = checkInput($_POST['mail']);
+        $prenom                 = checkInput($_POST['prenom']);
         $password              = checkInput(password_hash($_POST['password'], PASSWORD_DEFAULT));
-        $imagea              = "";
-        $imageb              = "";
-        $imageprofil              = checkInput($_FILES["imageprofil"]["name"]);
-        $imagefond             = checkInput($_FILES["imagefond"]["name"]);
-        $imagePath1          = '../images/'. basename($imageprofil);
-        $imagePath2          = '../images/'. basename($imagefond);
-        $imageExtension1     = pathinfo($imagePath1,PATHINFO_EXTENSION);
-        $imageExtension2     = pathinfo($imagePath2,PATHINFO_EXTENSION);
         $isSuccess          = true;
-        $isUploadSuccess    = false;
+        
 
         
         if(empty($pseudo)) 
@@ -57,6 +55,23 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $pseudoError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
+        if(!empty($pseudo)) 
+        {
+             $db = Database::connect();
+            $statement2 = $db->query('SELECT acheteur.pseudo FROM acheteur');
+                        while($acheteur2 = $statement2->fetch()) 
+                        {
+                            if($acheteur2['pseudo'] == $pseudo){
+                                $pseudoError = 'Ce pseudo est déjà utilisé';
+                                $isSuccess = false;
+                            }
+                            
+                        }
+                        Database::disconnect();
+
+            
+        }
+        
         if(empty($mail)) 
         {
             $mailError = 'Ce champ ne peut pas être vide';
@@ -74,72 +89,28 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $isSuccess = false;
         } 
         
-        if(empty($imageprofil)) 
+        if(empty($nom)) 
         {
             $imageprofilError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
-        else
+        if(empty($prenom)) 
         {
-            $isUploadSuccess = true;
-            if($imageExtension1 != "jpg" && $imageExtension1 != "png" && $imageExtension1 != "jpeg" && $imageExtension1 != "gif" ) 
-            {
-                $imageprofilError = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
-                $isUploadSuccess = false;
-            }
-         
-            if($_FILES["imageprofil"]["size"] > 500000) 
-            {
-                $imageprofilError = "Le fichier ne doit pas depasser les 500KB";
-                $isUploadSuccess = false;
-            }
-            if($isUploadSuccess) 
-            {
-                if(!move_uploaded_file($_FILES["imageprofil"]["tmp_name"], $imagePath1)) 
-                {
-                    $imageprofilError = "Il y a eu une erreur lors de l'upload";
-                    $isUploadSuccess = false;
-                } 
-            } 
-        }
-        
-        if(empty($imagefond)) 
-        {
-            $imagefondError = 'Ce champ ne peut pas être vide';
+            $imageprofilError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
-        else
-        {
-            $isUploadSuccess = true;
-            if($imageExtension2 != "jpg" && $imageExtension2 != "png" && $imageExtension2 != "jpeg" && $imageExtension2 != "gif" ) 
-            {
-                $imagefondError = "Les fichiers autorises sont: .jpg, .jpeg, .png, .gif";
-                $isUploadSuccess = false;
-            }
-           
-            if($_FILES["imagefond"]["size"] > 500000) 
-            {
-                $imagefondError = "Le fichier ne doit pas depasser les 500KB";
-                $isUploadSuccess = false;
-            }
-            if($isUploadSuccess) 
-            {
-                if(!move_uploaded_file($_FILES["imagefond"]["tmp_name"], $imagePath2)) 
-                {
-                    $imagefondError = "Il y a eu une erreur lors de l'upload";
-                    $isUploadSuccess = false;
-                } 
-            } 
-        }
+       
         
         
-        if($isSuccess && $isUploadSuccess) 
+        if($isSuccess) 
         {
             $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO vendeur (pseudo, mail, motdepasse, photoprofil, photofond) values(?, ?, ?, ?, ?)");
-            $statement->execute(array($pseudo, $mail,$password,$imageprofil,$imagefond));
+            $statement = $db->prepare("INSERT INTO acheteur (pseudo, mail, password, prenom, nom) values(?, ?, ?, ?, ?)");
+            $statement->execute(array($pseudo, $mail,$password,$prenom,$nom));
             Database::disconnect();
-            header("Location: gestionVendeursAdmin.php");
+
+
+            header("Location: ../accueil/accueil.php");
         }
     }
 
@@ -186,7 +157,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         <div class="container">
         
         <div class="titrecat">
-        Ajouter un Vendeur
+        Inscription
             <div class="container separation"></div>
         </div>
         <br><br>
@@ -194,7 +165,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="ajouterVendeur.php" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="inscriptionAcheteur.php" role="form" method="post" enctype="multipart/form-data">
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
@@ -216,25 +187,19 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                 <div class="col-md-6">  
                     </br>
                      <div class="form-group">
-                        <label for="imageprofil">Sélectionner une image profil:</label>
-                         </br>
-                        <input type="file" id="imageprofil" name="imageprofil"> 
-                        <span class="help-inline"><?php echo $imageprofilError;?></span>
-                        </br>
+                        <label for="prenom">Prénom:</label>
+                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" value="<?php echo $prenom;?>">
+                        <span class="help-inline"><?php echo $prenomError;?></span>
                     </div>
-                    
-                    <div class="form-group">
-                        </br>
-                        <label for="imagefond">Sélectionner une image fond:</label>
-                        </br>
-                        <input type="file" id="imagefond" name="imagefond"> 
-                        <span class="help-inline"><?php echo $imagefondError;?></span>
-                    </div>
-                   
                     <br>
+                    <div class="form-group">
+                        <label for="nom">Nom:</label>
+                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" value="<?php echo $nom;?>">
+                        <span class="help-inline"><?php echo $nomError;?></span>
+                    </div>
                 </div>
                
-                <div class="form-actions">
+                <div class="form-actions"  style="margin:0 auto">
                         <button type="submit" class="btn btn-success"></span> Ajouter</button> 
                    </div>
                </div>

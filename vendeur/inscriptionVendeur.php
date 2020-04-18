@@ -139,7 +139,8 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $statement = $db->prepare("INSERT INTO vendeur (pseudo, mail, motdepasse, photoprofil, photofond) values(?, ?, ?, ?, ?)");
             $statement->execute(array($pseudo, $mail,$password,$imageprofil,$imagefond));
             Database::disconnect();
-            header("Location: gestionVendeursAdmin.php");
+
+            header("Location: espace_vendeur.php?pseudo=$pseudo");
         }
     }
 
@@ -186,7 +187,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         <div class="container">
         
         <div class="titrecat">
-        Ajouter un Vendeur
+        Inscription
             <div class="container separation"></div>
         </div>
         <br><br>
@@ -194,7 +195,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="ajouterVendeur.php" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="inscriptionVendeur.php" role="form" method="post" enctype="multipart/form-data">
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
@@ -234,7 +235,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                     <br>
                 </div>
                
-                <div class="form-actions">
+                <div class="form-actions"  style="margin:0 auto">
                         <button type="submit" class="btn btn-success"></span> Ajouter</button> 
                    </div>
                </div>

@@ -245,7 +245,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="<?php echo 'modifierAdmin?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="<?php echo 'modifierAdmin.php?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">

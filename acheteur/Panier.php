@@ -1,3 +1,68 @@
+<?php
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['acheteur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
+    class Database
+{
+    private static $dbHost = "localhost";
+    private static $dbName = "ecebay";
+    private static $dbUsername = "root";
+    private static $dbUserpassword = "";
+    
+    private static $connection = null;
+    
+    public static function connect()
+    {
+        if(self::$connection == null)
+        {
+            try
+            {
+              self::$connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName , self::$dbUsername, self::$dbUserpassword);
+            }
+            catch(PDOException $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        return self::$connection;
+    }
+    
+    public static function disconnect()
+    {
+        self::$connection = null;
+    }
+
+}
+
+
+        $db = Database::connect();
+        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail FROM acheteur WHERE acheteur.id = ?");
+        $statement->execute(array($id));
+        $acheteur = $statement->fetch();
+        Database::disconnect();
+    
+     
+    
+
+    function checkInput($data) 
+    {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>

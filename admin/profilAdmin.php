@@ -105,7 +105,7 @@
             
                 <p><b>Photo de fond:</b></p> 
            
-                <img src="../images/<?php echo $admin['imagefond'];?>" style="width:225px; height:225px;">
+                <img src="../images/<?php echo $admin['imagefond'];?>" style="width:300px; height:200px;">
                 </br></br>
                 
                 <a class="btn btn-warning" style="margin:0 auto" href="modifierAdmin.php?id=<?php echo $id ?>">Modifier</a>

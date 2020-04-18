@@ -88,3 +88,21 @@ color: #000000;
 .image_bancaire_AX{
 	height: 178px;
 }
+
+
+.form{
+margin:0 auto;
+    text-align:center;
+
+}
+.form-actions{
+margin:0 auto;
+    text-align:center;
+
+}
+
+.ajouter{
+margin:0 auto;
+    text-align:center;
+
+}

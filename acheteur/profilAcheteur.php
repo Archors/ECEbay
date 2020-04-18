@@ -1,6 +1,16 @@
 <?php
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['acheteur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
 
-class Database
+    class Database
 {
     private static $dbHost = "localhost";
     private static $dbName = "ecebay";
@@ -31,21 +41,16 @@ class Database
     }
 
 }
-  
-    if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
 
-    if(!empty($_POST)) 
-    {
-        $id = checkInput($_POST['id']);
+
         $db = Database::connect();
-        $statement = $db->prepare("DELETE FROM vendeur WHERE id = ?");
+        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail FROM acheteur WHERE acheteur.id = ?");
         $statement->execute(array($id));
+        $acheteur = $statement->fetch();
         Database::disconnect();
-        header("Location: gestionVendeursAdmin.php"); 
-    }
+    
+     
+    
 
     function checkInput($data) 
     {
@@ -54,6 +59,7 @@ class Database
       $data = htmlspecialchars($data);
       return $data;
     }
+
 ?>
 
 
@@ -71,8 +77,7 @@ class Database
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
-
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="acheteur.css">
         
     </head>
     
@@ -89,41 +94,46 @@ class Database
         <div class="container">
         
         <div class="titrecat">
-        Supprimer un vendeur
+        Votre profil
             <div class="container separation"></div>
         </div>
         <br><br>
             
         </div>    
             
-       <div class="container validationsup">
-            <div class="row">
+       <div class="container">
+           <div class="row">
+               <div class="col-md-12">
 
-                <form class="form" action="supprimerVendeur.php" role="form" method="post">
-                    <input type="hidden" name="id" value="<?php echo $id;?>"/>
-                    <h4>Etes vous sur de vouloir supprimer ce vendeur ?</h4>
-                    </br>
-                    <div class="form-actions">
-                      <button type="submit" class="btn btn-success">Oui</button>
-                      <a class="btn btn-default" href="gestionVendeursAdmin.php">Annuler</a>
-                    </div>
-                </form>
-            </div>
-        </div>   
-                    
+                <p><b>Pseudo:</b> <?php echo ' '.$acheteur['pseudo'];?></p>
                 
+                <p><b>Nom:</b> <?php echo ' '.$acheteur['nom'];?></p>
+                
+                <p><b>Prénom:</b> <?php echo ' '.$acheteur['prenom'];?></p> 
+                
+                <p><b>Adesse:</b> </p>
+                <p><b>Noméro:</b></p>
+                <p><b>Carte:</b> </p>
+                <p><b>Pays:</b> </p>
+                <p><b>Ville:</b> </p>
+                
+           </br>    
+                   
+               </div>
+           <a class="btn btn-warning" style="margin:0 auto" href="modifierAcheteur.php">Modifier</a>
+           </div>
+        
+    
     </div>
-         
+        
 
         </br></br>
 
         
         
-  <?php include '../template/footer.php'; ?>
+       <?php include '../template/footer.php'; ?>
+
 
         
     </body>
 </html>
-
-
-

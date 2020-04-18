@@ -150,7 +150,7 @@
                
                 <div class="col-md-6">   
                      <div class="item">
-                    <img src ="../images/<?php echo $article['image'];?>">
+                    <img class="imgobj" src ="../images/<?php echo $article['image'];?>">
                     <div class="description">
                         <h2><?php echo $article['nom'];?></h2>
                         <p><?php echo $article['prix'];?>€</p>

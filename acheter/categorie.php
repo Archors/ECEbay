@@ -1,3 +1,50 @@
+<?php
+
+class Database
+{
+    private static $dbHost = "localhost";
+    private static $dbName = "ecebay";
+    private static $dbUsername = "root";
+    private static $dbUserpassword = "";
+    
+    private static $connection = null;
+    
+    public static function connect()
+    {
+        if(self::$connection == null)
+        {
+            try
+            {
+              self::$connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName , self::$dbUsername, self::$dbUserpassword);
+            }
+            catch(PDOException $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        return self::$connection;
+    }
+    
+    public static function disconnect()
+    {
+        self::$connection = null;
+    }
+
+}
+
+
+?>
+
+<?php 
+if(!empty($_GET['id'])) 
+    {
+        $id = $_GET['id'];
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +69,26 @@
              $('.header').height($(window).height());
              });
         </script>
+        <script>
+                    function visibilite(thingId){
+            var targetElement;
+            var elements;
+            targetElement = document.getElementById(thingId) ;
+
+            // recupere tous les elements ayant pour nom de classe "Element"
+            elements = document.getElementsByClassName("items")
+
+            // parcoure tous ces elements et les cache
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none" ;
+            }
+
+            //affiche uniquement l element selectionné
+            if (targetElement.style.display == "none") {
+                    targetElement.style.display = "" ;
+            }
+        }
+        </script>
         
     </head>
     
@@ -37,16 +104,26 @@
         <div class="container-fluid">
         
         <div class="titrecat">
-        Férailles et Trésors
-            <div class="container separation"></div>
+        <?php 
+                    $db = Database::connect();
+                   $statement = $db->prepare('SELECT categorie.nom FROM categorie WHERE categorie.id=?');
+                    $statement->execute(array($id));
+                    while ($categorie = $statement->fetch()) 
+                    {
+                 
+                        echo $categorie['nom'];
+                    }
+
+                Database::disconnect();
+                    ?>
+            <div class="separation"></div>
         </div>
-        
-        <!-- partie recherche -->
-        
-        <div class="recherche">
+            
+        <div class="container-fluid">
+             <div class="recherche">
             </br>
              <form class="form" role="form" action="" methode="post" >
-                   <a href=""> <input type="text" class="form-control" id="recherche" name="recherche" placeholder="recherche" value=""></a>
+                   <input type="text" class="form-control" id="recherche" name="recherche" placeholder="recherche" value="">
                </form>
         </div>
         
@@ -59,99 +136,146 @@
                 <div class="col-md-2">
                     </br>
                     <ul>
-                        <li>Achat immédiat</li>
-                        <li>Enchère</li>
-                        <li>Meilleur offre</li>
+                        <li><a onclick="visibilite('1');">Achat immédiat</a></li>
+                        <li><a onclick="visibilite('2');">Enchères</a></li>
+                        <li><a onclick="visibilite('3');">Meilleurs offres</a></li>
                     </ul>
-                <div class="container separation"></div>
+                <div class="separation"></div>
                 </br>
             </div>
             
             <div class="col-md-10">
   
-                <div class="items">
-            <div class="row">
-                 <div class="col-sm-6 col-md-4 col-lg-3">
+                 
+                <div id="1" class="items" >
+                    <div class="row">
+                    
+                   <?php 
+                    $db = Database::connect();
+                   $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=1');
+                    $statement->execute(array($id));
+                    while ($article = $statement->fetch()) 
+                    {
+                 
+                        echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre.png">
+                    <img class="imgobj" src="../images/'.$article['image'].'">
                     <div class="description">
-                        <h2>Montre Cartier</h2>
-                        <p>620E</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
+                        <span class="titre_objet">'.$article['nom'].'</span>
+                        <br>
+                        <span class="description_objet">Ferailles et Trésor</span>
+                        <br>
+                        <span class="description_objet">'.$article['prix'].'</span>
+                        <br>
+                        <br>
+                        <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
-                     </br>
-                </div> 
+                     </br><br><br><br>
+                </div> ';
+                    
+                    }
+
+                Database::disconnect();
+                    ?>
                 
-                 <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                    <img src="montre.png">
-                    <div class="description">
-                        <h2>titre</h2>
-                        <p>type de vente</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br>
-                </div> 
-     
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                    <img src="montre.png">
-                    <div class="description">
-                        <h2>titre</h2>
-                        <p>type de vente</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br>
-                </div> 
-
-                 <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                    <img src="montre.png">
-                    <div class="description">
-                        <h2>titre</h2>
-                        <p>type de vente</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br>
-                </div> 
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                    <img src="montre.png">
-                    <div class="description">
-                        <h2>titre</h2>
-                        <p>type de vente</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br>
-                </div> 
-           
-                 <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                    <img src="montre.png">
-                    <div class="description">
-                        <h2>titre</h2>
-                        <p>type de vente</p>
-                        <a href="" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br>
-                </div> 
-              
-            </div>
+                
+                </div> </div>
+                
+                <div id="2" class="items" style="display: none;">
         
-        </div>
-            </div>
+
+                 <div class="row">
+                    
+                   <?php 
+                    $db = Database::connect();
+                   $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=2');
+                    $statement->execute(array($id));
+                    
+                    while ($article = $statement->fetch()) 
+                    {
+                 
+                        echo '<div class="col-sm-6 col-md-4">
+                    <div class="item">
+                    <img class="imgobj" src="../images/'.$article['image'].'">
+                    <div class="description">
+                        <span class="titre_objet">'.$article['nom'].'</span>
+                        <br>
+                        <span class="description_objet">Ferailles et Trésor</span>
+                        <br>
+                        <span class="description_objet">'.$article['prix'].'</span>
+                        <br>
+                        <br>
+                        <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
+                    </div>
+                    </div>
+                     </br><br><br><br>
+                </div> ';
+                    
+                    }
+
+                Database::disconnect();
+                    ?>
+                
+                
+                </div>
+                
+                
+                </div> 
+
+                <div id="3" class="items" style="display: none;">
+        
+
+                 <div class="row">
+                    
+                   <?php 
+                    $db = Database::connect();
+                   $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=3');
+                    $statement->execute(array($id));
+                    
+                    while ($article = $statement->fetch()) 
+                    {
+                 
+                        echo '<div class="col-sm-6 col-md-4">
+                    <div class="item">
+                    <img class="imgobj" src="../images/'.$article['image'].'">
+                    <div class="description">
+                        <span class="titre_objet">'.$article['nom'].'</span>
+                        <br>
+                        <span class="description_objet">Ferailles et Trésor</span>
+                        <br>
+                        <span class="description_objet">'.$article['prix'].'</span>
+                        <br>
+                        <br>
+                        <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
+                    </div>
+                    </div>
+                     </br><br><br><br>
+                </div> ';
+                    
+                    }
+
+                Database::disconnect();
+                    ?>
+                
+                
+                </div>
+                
+                
+                </div> 
             
             </div>
     
         </div>
+     </div>
+ </div>
+    </div>
+            
+        </div>
         
+        <!-- partie recherche -->
+        
+       
         
 
         

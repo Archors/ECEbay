@@ -122,7 +122,7 @@
                 $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$id));
                 Database::disconnect();
 
-                header("Location: voirArticle?id=$id");
+                header("Location: voirArticle.php?id=$id");
             
         }
         else
@@ -132,7 +132,7 @@
                 $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id));
                 Database::disconnect();
 
-                    header("Location: voirArticle?id=$id");
+                    header("Location: voirArticle.php?id=$id");
                 
         }
     }

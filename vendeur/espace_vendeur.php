@@ -32,17 +32,33 @@
 
 }
 
+    $id=$pseudo='';
 
     if(!empty($_GET['id'])) 
     {
         $id = checkInput($_GET['id']);
     }
+if(!empty($_GET['pseudo'])) 
+    {
+        $pseudo = checkInput($_GET['pseudo']);
+    }
      
     $db = Database::connect();
-    $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.id = ?");
+
+    if(!empty($pseudo)){
+        $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.pseudo = ?");
+    $statement->execute(array($pseudo));
+    $vendeur = $statement->fetch();
+    Database::disconnect();
+    }
+       
+    else{
+        $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.id = ?");
     $statement->execute(array($id));
     $vendeur = $statement->fetch();
     Database::disconnect();
+    }
+    
 
     function checkInput($data) 
     {
@@ -103,7 +119,7 @@
                 <p><b>Mail:</b> <?php echo ' '.$vendeur['mail'];?></p> 
                 
                 <p><b>Image de fond:</b></p>
-                <img src="../images/<?php echo $vendeur['photofond'];?>" >
+                <img src="../images/<?php echo $vendeur['photofond'];?>" style="width:300px; height:200px;">
            </br>
                 <a class="btn btn-warning" style="margin:0 auto" href="modifierVendeur.php?id=<?php echo $id ?>">Modifier</a>
                    

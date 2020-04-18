@@ -125,10 +125,10 @@
             Database::disconnect();
             
             if($id==39){
-                header("Location: ../admin/profilAdmin?id=1");
+                header("Location: ../admin/profilAdmin.php?id=1");
             }
             else{
-                header("Location: ../vendeur/espace_vendeur?id=$id");
+                header("Location: ../vendeur/espace_vendeur.php?id=$id");
             }
             
         }

@@ -1,3 +1,20 @@
+.form{
+margin:0 auto;
+    text-align:center;
+
+}
+.form-actions{
+margin:0 auto;
+    text-align:center;
+
+}
+
+.ajouter{
+margin:0 auto;
+    text-align:center;
+
+}
+
 .item{
     
     width:75%;

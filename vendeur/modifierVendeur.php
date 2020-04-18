@@ -46,7 +46,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
     {
         $pseudo               = checkInput($_POST['pseudo']);
         $mail        = checkInput($_POST['mail']);
-        $password              = checkInput($_POST['password']);
+        $password              = checkInput(password_hash($_POST['password'], PASSWORD_DEFAULT));
         $imageprofil              = checkInput($_FILES["imageprofil"]["name"]);
         $imagefond             = checkInput($_FILES["imagefond"]["name"]);
         $imagePath1          = '../images/'. basename($imageprofil);
@@ -243,7 +243,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="<?php echo 'modifierVendeur?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="<?php echo 'modifierVendeur.php?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
