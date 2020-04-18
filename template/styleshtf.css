@@ -4,14 +4,12 @@
 /*header*/
 
 .header {
-    height: 70px;
-    left: 0px;
-    top: 0px;
-    background: #000;
+    height: 170px;
+    background: #fff;
 }
 
 .navbar {
-    background: #000;
+    background: #353434;
 }
 
 .nav-link,
@@ -21,7 +19,7 @@
 }
 
 .nav-link {
-    margin-right: 1em !important;
+    margin-right: 70px;
 }
 
 .nav-link:hover {
@@ -35,12 +33,38 @@
 
 /*titre*/
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+}
+
 .titrecat {
-    font-family: Ribeye Marrow;
+    font-family: Open Sans;
     font-size: 80px;
     text-align: center;
     color: #000;
 }
+
+.sous_titre {
+    font-family: Open Sans;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+
+.petit_texte {
+    font-family: Open Sans;
+    font-size: 10px;
+    text-align: center;
+    color: #000000 ;
+}
+
 
 .separation {
     height: 0px;
@@ -54,7 +78,11 @@
 
 /*footer*/
 
-footer {
+.footer {
     background: #394351;
-    color: #fff;
+    font-family: Open Sans;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    bottom:0px;
 }

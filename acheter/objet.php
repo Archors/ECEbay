@@ -50,7 +50,7 @@
                 <div class="col-md-5">
                     <br> <br><br><br><br>
                     <div align=center>
-                    <img class= "img-responsive img text-center" src="montre_deGaulle.jpeg">
+                    <img class= "img-responsive img1 text-center" src="montre_deGaulle.jpeg">
                     </div>
                 
                 </div>

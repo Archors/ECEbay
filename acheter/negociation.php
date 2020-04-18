@@ -68,7 +68,7 @@
 
                  <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -85,7 +85,7 @@
                 
                  <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -103,7 +103,7 @@
      
                 <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -125,7 +125,7 @@
 
                  <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -142,7 +142,7 @@
                 
                  <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -161,7 +161,7 @@
      
                 <div class="col-sm-6 col-md-4">
                     <div class="item">
-                    <img src="montre_deGaulle.jpeg">
+                    <img src="montre_deGaulle.jpeg" class="img1">
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
@@ -179,6 +179,8 @@
             </div>
 </br>
 
+</div>
+</div>
 
 
         
