@@ -27,55 +27,75 @@
 
     <?php include '../template/header.php'; ?>
 
-
-    <section id="skills">
-        <div class="red-divider"></div>
         <div class="heading">
-            <h2>Principe</h2>
+            
         </div>
-        <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+        <!-- On construit un carousel sous forme de slide qui changera de visuel toutes les 50s -->
+        <div id="carousel_ECEBay" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- on définit ce que contient ce carousel -->
             <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#carousel_ECEBay" data-slide-to="0"class="active"> </li>
+                <li data-target="#carousel_ECEBay" data-slide-to="1"> </li>
+                <li data-target="#carousel_ECEBay" data-slide-to="2"> </li>
+
             </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <center><img class="d-block" src="images/expo.png" alt="First slide"></center>
-                    <br><br>
-                </div>
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo2.png" alt="Second slide"></center>
-                    <br><br>
-                </div>
 
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo3.png" alt="Third slide"></center>
-                    <br><br>
-
-                </div>
-                <div class="carousel-item">
-                    <center><img class="d-block" src="images/expo4.png" alt="Fourth slide"></center>
-                    <br><br>
+            <div class="carousel-inner">
+                <!-- Le caroussel apparaîtra avec l'image suivante -->
+                <div class="carousel-item active"> 
+                    <img src="../images/carousel1.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/vip.php">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
-                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev" role="button">
-                    <span class="fas fa-chevron-left fa-2x"></span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" data-slide="next" role="button">
-                    <span class="fas fa-chevron-right fa-2x"></span>
-                </a>
 
-            </div>
+                <div class="carousel-item"> 
+                    <img src="../images/carousel2.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/musee.php">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="carousel-item "> 
+                    <img src="../images/carousel3.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/ferraille.php">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>  
+
+            </a>
         </div>
 
-    </section>
 
 
+<br> <br> <br> <br>
     <div class="container-fluid">
         </br>
         <h3 style="text-align:center">Articles recommandés</h3>
+     <div class="container separation"></div>
         </br>
         <div class="items">
             <div class="row">
@@ -158,9 +178,9 @@
         </br>
     </div>
 
-    <div class="container-fluid" style="background-color:#A09776">
+    <div class="container-fluid" style="background-color:#394351">
         <br>
-        <h3 style="text-align:center">Une question ou un retour ?</h3>
+        <h3 style="text-align:center; color:white">Une question ou un retour ?</h3>
         <br>
         <div class="container">
             <div class="form-group "> <input type="text " class="form-control " placeholder="Votre nom: " name=" "> </div>
@@ -170,6 +190,36 @@
 
         </div>
 
+        <br><br>
+    </div>
+
+    <div class="container">
+        <br>
+
+        <div class="row ">
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+            
+            </div>
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="info">
+                <img src="">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+</div>
+              
+            </div>
+        </div>
+  
         <br><br>
     </div>
 

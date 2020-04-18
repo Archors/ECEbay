@@ -26,10 +26,14 @@
 </head>
     
 <body>
-<nav class="navbar navbar-expand">
-        <a class=" navbar-brand " href="../accueil/accueil.php"><img src="../images/Logo.png" alt="Home " height="40" width="auto" /></a>
-        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
+    <!-- Reponsive header --> 
+    <!-- navbar-expand-md combiné à div class="collapse navbar-collapse" permet de rassembler les différents menus dans une nouvelle barre si l'écran est plus petit qu'un écran de taille md --> 
+
+<nav class="navbar navbar-expand-md fixed-top">
+        <a class="navbar-brand" href="../accueil/accueil.php"> <img src="../images/Logo.png" alt="Home " height="40" width="auto" /></a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+
+     <span class="navbar-toggler-icon "></span>
      </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
@@ -38,11 +42,11 @@
                 <span class="sous_titre"> Catégories </span>
               </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../acheter/categorie.php">Férailles et Trésor</a>
+                        <a class="dropdown-item" href="../acheter/categorie_ferraille.php">Férailles et Trésor</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Bon musées</a>
+                        <a class="dropdown-item" href="../acheter/categorie_musee.php">Bon pour le Musée</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Accessoires VIP</a>
+                        <a class="dropdown-item" href="../acheter/categorie_vip.php">Accessoires VIP</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -50,11 +54,11 @@
                 <span class="sous_titre"> Acheter </span>
               </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Achat immédiat</a>
+                        <a class="dropdown-item" href="../acheter/achat_immediat.php">Achat immédiat</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Enchère</a>
+                        <a class="dropdown-item" href="../acheter/enchere.php">Enchère</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Meilleur offre</a>
+                        <a class="dropdown-item" href="../acheter/negociation.php">Négociation</a>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="../vendeur/form_vendeur.php"> <span class="sous_titre"> Vendre </span> </a></li>
@@ -81,6 +85,7 @@
             </ul>
         </div>
     </nav>
+
     
 </body>
 </html>

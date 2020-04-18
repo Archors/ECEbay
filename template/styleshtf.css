@@ -16,6 +16,7 @@
 .navbar-brand {
     color: #fff;
     cursor: pointer;
+
 }
 
 .nav-link {
@@ -42,11 +43,14 @@
     padding-bottom: 2.5rem;
 }
 
+
+
 .titrecat {
     font-family: Open Sans;
     font-size: 80px;
     text-align: center;
     color: #000;
+    padding-top:100px;
 }
 
 .sous_titre {

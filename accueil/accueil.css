@@ -30,7 +30,7 @@
         color: #fff;
         background-color: black;
     }
-    /*Pagee d'accueil*/
+    /*Page d'accueil*/
     
     .info {
         text-align: center;
@@ -49,7 +49,7 @@
         background: #fff;
     }
     
-    #skills .heading h2 {
+    .heading h2 {
         color: #FF8C00;
     }
     
@@ -67,30 +67,39 @@
         margin-top: 5px;
         text-shadow: 1px 1px 1px #000;
     }
-    
-    .carousel-indicators {
-        bottom: 0px;
-    }
-    
-    .carousel-indicators li {
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        border: 1px solid #FF8C00;
-    }
-    
-    .carousel-indicators li.active {
-        background-color: #FF8C00;
-    }
-    
-    #myCarousel .carousel-item {
-        padding: 40px 30px;
-    }
-    
-    #myCarousel .carousel-item h3 {
-        color: #FF8C00;
-        font-style: italic;
-    }
+
+
+
+#carousel_ECEBay{
+    width:100%;
+    margin:0 auto;
+    margin-top:-40px;
+}
+
+.carousel-item img{
+    width:100%;
+    height:auto;
+}
+
+.carousel_titre{
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 40px;
+color: #FFFFFF;
+text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+padding-bottom:5px;
+}
+
+.carousel_carre{
+width: 255px;
+height: 65px;
+border: 4px solid #ffffff;
+box-sizing: border-box;
+box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+text-align:center;
+}
+
     
     .fas.fa-chevron-left,
     .fas.fa-chevron-right {
