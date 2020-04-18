@@ -36,7 +36,7 @@
         
         <div class="titrecat">
             <!-- titre de la categorie -->
-        Bon pour le Musée
+        Négociation
         <!-- Diminuer taille -->
         <div class="container separation"></div>
         </div>
@@ -59,20 +59,6 @@
                         <!--end of col-->
     </div>
     <br> <br>  
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <span class="titrecat_2"> Achats Immédiats </span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <div class="line"> </div>
-            </div>
-        </div>
-        <br>
-        
         
         
         <!-- Liste items Vente Immédiate -->
@@ -91,7 +77,7 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet_negociation.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -103,13 +89,13 @@
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
+                        <span class="description_objet">Bon pour le Musée</span>
                         <br>
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
 
-                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet_negociation.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
@@ -126,27 +112,14 @@
                         <span class="description_objet">prix:229$ </span>
                         <br>
                         <br>
-                        <a href="objet.php" class="btn btn-order" role=button>Voir</a>
+                        <a href="objet_negociation.php" class="btn btn-order" role=button>Voir</a>
                     </div>
                     </div>
                      </br><br><br><br>
                 </div> 
             
             </div>
-</br><br>
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <span class="titrecat_2"> Enchère </span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <div class="line"> </div>
-            </div>
-        </div>
-        <br>
+</br><br><br>
 
             <div class="row">
 
@@ -156,78 +129,7 @@
                     <div class="description">
                         <span class="titre_objet">Montre Général de Gaulle</span>
                         <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
-                        <br>
-                        <span class="description_objet">prix:229$ </span>
-                        <br>
-                        <br>
-                        <a href="objet_enchere.php" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     </br><br><br><br>
-                </div> 
-                
-                 <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                    <img src="montre_deGaulle.jpeg">
-                    <div class="description">
-                        <span class="titre_objet">Montre Général de Gaulle</span>
-                        <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
-                        <br>
-                        <span class="description_objet">prix:229$ </span>
-                        <br>
-                        <br>
-
-                        <a href="objet_enchere.php" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     
-                </div> 
-
-     
-                <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                    <img src="montre_deGaulle.jpeg">
-                    <div class="description">
-                        <span class="titre_objet">Montre Général de Gaulle</span>
-                        <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
-                        <br>
-                        <span class="description_objet">prix:229$ </span>
-                        <br>
-                        <br>
-                        <a href="objet_enchere.php" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
-                     
-                </div> 
-            
-            </div>
-</br><br>
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <span class="titrecat_2"> Négociation </span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 offset-col-md-2">
-                <div class="line"> </div>
-            </div>
-        </div>
-        <br>
-
-            <div class="row">
-
-                 <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                    <img src="montre_deGaulle.jpeg">
-                    <div class="description">
-                        <span class="titre_objet">Montre Général de Gaulle</span>
-                        <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
+                        <span class="description_objet">Accessoire VIP</span>
                         <br>
                         <span class="description_objet">prix:229$ </span>
                         <br>

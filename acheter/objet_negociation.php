@@ -79,7 +79,7 @@
                 </div>
                 
                 <div class="col-md-5">
-                 <button type="submit" class="btn_bg_2 btn_text_2"> <span class="btn_text_2"> Négocier </span> </button>
+                 <button type="submit" class="btn_bg_2 btn_text_2"> <a href="../acheteur/Panier.php "class="btn_text_2"> Négocier </a> </button>
                </div>
             
               </div>
