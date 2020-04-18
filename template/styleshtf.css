@@ -35,6 +35,15 @@
 
 /*titre*/
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+}
+
 .titrecat {
     font-family: Ribeye Marrow;
     font-size: 80px;
@@ -57,4 +66,7 @@
 footer {
     background: #394351;
     color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
