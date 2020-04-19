@@ -1,4 +1,14 @@
 <?php
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['admin']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
 
     class Database
 {
@@ -35,12 +45,12 @@
 
     if(!empty($_GET['id'])) 
     {
-        $id = checkInput($_GET['id']);
+        $id2 = checkInput($_GET['id']);
     }
      
     $db = Database::connect();
     $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.id = ?");
-    $statement->execute(array($id));
+    $statement->execute(array($id2));
     $vendeur = $statement->fetch();
     Database::disconnect();
 
@@ -103,7 +113,7 @@
                 <p><b>Mail:</b> <?php echo ' '.$vendeur['mail'];?></p> 
                 
                 <p><b>Image de fond:</b></p>
-                <img src="../images/<?php echo $vendeur['photofond'];?>" >
+                <img src="../images/<?php echo $vendeur['photofond'];?>" style="width:300px; height:200px;">
                 
                    
                </div>
@@ -123,7 +133,7 @@
                     <tbody>
                          <?php
                         $db = Database::connect();
-                        $statement = $db->query('SELECT article.id, article.nom, article.categorie, article.prix, type.name  AS type FROM article LEFT JOIN type ON article.type = type.id  WHERE article.vendeur="'.$id.'" ORDER BY article.id ');
+                        $statement = $db->query('SELECT article.id, article.nom, article.categorie, article.prix, type.name  AS type FROM article LEFT JOIN type ON article.type = type.id  WHERE article.vendeur="'.$id2.'" ORDER BY article.id ');
                         while($article = $statement->fetch()) 
                         {
                             echo '<tr style="text-align:center">';

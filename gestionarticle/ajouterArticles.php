@@ -1,5 +1,21 @@
 <?php
+ session_start(); 
 
+if(isset($_GET['id'])){
+            $id3=$_GET['id'];
+        }
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+{
+    $id1=$_SESSION['id'];
+   
+}
+elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+    $id2=$_SESSION['id'];
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
 
      
     class Database
@@ -34,10 +50,6 @@
 
 }
 
- if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
  
     $nomError = $descriptionError = $prixError = $categorieError = $imageError = $typeError = $dateError = $nom = $description = $prix = $categorie = $image = $type = $date = "";
 
@@ -102,7 +114,7 @@
                 $isUploadSuccess = false;
             }
             
-            if($_FILES["image"]["size"] > 500000) 
+            if($_FILES["image"]["size"] > 1000000) 
             {
                 $imageError = "Le fichier ne doit pas depasser les 500KB";
                 $isUploadSuccess = false;
@@ -117,18 +129,27 @@
             } 
         }
         
+        
+        
+        
         if($isSuccess && $isUploadSuccess) 
         {
-            $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO article (nom,description,prix,categorie,type,date,image,vendeur) values(?, ?, ?, ?, ?, ?, ?, ?)");
-            $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id));
-            Database::disconnect();
             
-            if($id==39){
-                header("Location: ../admin/profilAdmin.php?id=1");
-            }
-            else{
-                header("Location: ../vendeur/espace_vendeur.php?id=$id");
+            
+            if(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+                
+                $db = Database::connect();
+                $statement = $db->prepare("INSERT INTO article (nom,description,prix,categorie,type,date,image,vendeur) values(?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id3));
+                Database::disconnect();
+                header("Location: ../admin/profilAdmin.php");
+                }
+            elseif(isset($_SESSION['id']) && isset($_SESSION['vendeur'])){
+                $db = Database::connect();
+            $statement = $db->prepare("INSERT INTO article (nom,description,prix,categorie,type,date,image,vendeur) values(?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id1));
+            Database::disconnect();
+                header("Location: ../vendeur/espace_vendeur.php");
             }
             
         }
@@ -177,7 +198,16 @@
         </div>    
             
        <div class="container">
-           <form class="form" action="ajouterArticles.php?id=<?php echo $id; ?>" role="form" method="post" enctype="multipart/form-data">
+           <form class="form" action="<?php 
+                                       if(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+                
+                                        echo 'ajouterArticles.php?id='.$id3;
+                                        }
+                                    elseif(isset($_SESSION['id']) && isset($_SESSION['vendeur'])){
+                                        echo 'ajouterArticles.php';
+                                    }
+                                      
+                                      ?>" role="form" method="post" enctype="multipart/form-data">
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">

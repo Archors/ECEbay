@@ -57,6 +57,23 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $pseudoError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
+        if(!empty($pseudo)) 
+        {
+             $db = Database::connect();
+            $statement2 = $db->query('SELECT vendeur.pseudo FROM vendeur');
+                        while($vendeur2 = $statement2->fetch()) 
+                        {
+                            if($vendeur2['pseudo'] == $pseudo){
+                                $pseudoError = 'Ce pseudo est déjà utilisé';
+                                $isSuccess = false;
+                            }
+                            
+                        }
+                        Database::disconnect();
+
+            
+        }
+        
         if(empty($mail)) 
         {
             $mailError = 'Ce champ ne peut pas être vide';
@@ -140,7 +157,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $statement->execute(array($pseudo, $mail,$password,$imageprofil,$imagefond));
             Database::disconnect();
 
-            header("Location: espace_vendeur.php?pseudo=$pseudo");
+            header("Location: ../accueil/accueil.php");
         }
     }
 

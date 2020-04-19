@@ -1,5 +1,16 @@
 <?php
 
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['admin']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
 class Database
 {
     private static $dbHost = "localhost";
@@ -32,11 +43,6 @@ class Database
 
 }
 
-
- if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
 
 
 $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$imageprofilError = $imageprofil = $imagefondError = $imagefond = "";
@@ -147,14 +153,14 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                     Database::disconnect();
                     
     
-                    header("Location: profilAdmin.php?id=$id");
+                    header("Location: profilAdmin.php");
                 }
                 else{
                     $db = Database::connect();
                     $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imagefond = ? WHERE id = ?");
                 $statement->execute(array($pseudo,$mail,$password, $imagefond,$id));
                     Database::disconnect();
-                    header("Location: profilAdmin.php?id=$id");
+                    header("Location: profilAdmin.php");
                 }
             }
             else{
@@ -164,14 +170,14 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                     $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imageprofil = ? WHERE id = ?");
                 $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
                     Database::disconnect();
-                    header("Location: profilAdmin.php?id=$id");
+                    header("Location: profilAdmin.php");
                 }
                 else{
                     $db = Database::connect();
                 $statement = $db->prepare("UPDATE admin set pseudo = ?, mail = ?, password = ?, imageprofil = ?, imagefond = ? WHERE id = ?");
                 $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
                     Database::disconnect();
-                    header("Location: profilAdmin.php?id=$id");
+                    header("Location: profilAdmin.php");
                 }
             }
     

@@ -1,3 +1,37 @@
+<?php session_start(); 
+class Database
+{
+    private static $dbHost = "localhost";
+    private static $dbName = "ecebay";
+    private static $dbUsername = "root";
+    private static $dbUserpassword = "";
+    
+    private static $connection = null;
+    
+    public static function connect()
+    {
+        if(self::$connection == null)
+        {
+            try
+            {
+              self::$connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName , self::$dbUsername, self::$dbUserpassword);
+            }
+            catch(PDOException $e)
+            {
+                die($e->getMessage());
+            }
+        }
+        return self::$connection;
+    }
+    
+    public static function disconnect()
+    {
+        self::$connection = null;
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,23 +74,48 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active" style="background-image:url(../images/wallpaper_tresor.jpeg)" style="width: 1920px;
-height: 888px;">
-                    <center><h1 style="color:white"><b>Férailles et Trésors</b></h1></center>
-                    <br><br>
-                </div>
-                <div class="carousel-item" style="background-image:url(../images/wallpaper_musee.jpeg)" style="width: 1920px;
-height: 888px;">
-                    <center><h1 style="color:white"><b>Bons pour le musée</b></h1></center>
-                    <br><br>
+                <div class="carousel-item active"> 
+                    <img src="../images/carousel1.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie.php?id=1">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                 </div>
 
-                <div class="carousel-item" style="background-image:url(../images/wallpaper_VIP.jpeg)" style="width: 1920px;
-height: 888px;">
-                    <center><h1 style="color:white"><b>Accessoirs VIP</b></h1></center>
-                    <br><br>
+                <div class="carousel-item"> 
+                    <img src="../images/carousel2.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie.php?id=2">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
 
+                <div class="carousel-item "> 
+                    <img src="../images/carousel3.png">
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie.php?id=3">
+                                        <span class="carousel_titre"> Découvrir </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
                 <a class="carousel-control-prev" href="#myCarousel" data-slide="prev" role="button">
                     <span class="fas fa-chevron-left fa-2x"></span>
                 </a>
@@ -77,78 +136,30 @@ height: 888px;">
         </br>
         <div class="items">
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <?php
+$db = Database::connect();
+                $statement = $db->query('SELECT * FROM article LIMIT 8');
+    
+                    while ($article = $statement->fetch()) 
+                    {
+                        echo '<div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="item">
-                        <img src="../images/coffre.jpg" class="imgobj">
+                        <img class="imgobj" src="../images/'.$article['image'].'">
                         <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-                            <a href="" class="btn btn-order" role=button>Voir</a>
+                            <h2>'.$article['nom'].'</h2>
+                            <p>'.$article['prix'].'‎€</p>
+                            <a href="../acheter/objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
                         </div>
                     </div>
                     </br>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                        <img src="coffre.jpg">
-                        <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-                            <a href="" class="btn btn-order" role=button>Voir</a>
-                        </div>
-                    </div>
-                    </br>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                        <img src="coffre.jpg">
-                        <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-                            <a href="" class="btn btn-order" role=button>Voir</a>
-                        </div>
-                    </div>
-                    </br>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                        <img src="coffre.jpg">
-                        <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-                            <a href="" class="btn btn-order" role=button>Voir</a>
-                        </div>
-                    </div>
-                    </br>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                        <img src="coffre.jpg">
-                        <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-                            <a href="" class="btn btn-order" role=button>Voir</a>
-                        </div>
-                    </div>
-                    </br>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="item">
-                        <img src="coffre.jpg">
-                        <div class="description">
-                            <h2>titre</h2>
-                            <p>type de vente</p>
-
-                            <a href="" class="btn btn-order" role=button>Voir</a>
-                        </div>
-                    </div>
-                    </br>
-                </div>
+                </div>';
+                    }
+                   
+                Database::disconnect();
+                echo  '</div>';
+                
+?>
+                
 
             </div>
 
@@ -156,7 +167,7 @@ height: 888px;">
         </br>
     </div>
 
-    <div class="container-fluid" style="background-color:#394351">
+    <div class="container-fluid" style="background-color:#000">
         <br>
         <h3 style="text-align:center; color:white">Une question ou un retour ?</h3>
         <br>

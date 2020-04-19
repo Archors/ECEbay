@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class Database
 {
     private static $dbHost = "localhost";
@@ -52,7 +54,9 @@ class Database
                               {
                                 if ($password == $admin['password']) {
                                     $test=$admin['id'];
-                                header("Location: profilAdmin.php?id=$test");
+                                     $_SESSION['id'] = $admin['id'];
+                                    $_SESSION['admin'] = 'admin';
+                                header("Location: profilAdmin.php");
                                 } else {
                                      $test="erreur de connexion";
                                 }

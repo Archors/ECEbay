@@ -2,14 +2,12 @@
   
  session_start();                 
  
-if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+if (isset($_SESSION['id']) && isset($_SESSION['acheteur']))
 {
     $id=$_SESSION['id'];
    
 }
-elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
-    $id=$_SESSION['id'];
-}
+
 else{
     header("Location: connexionAcheteur.php");
 }
@@ -45,31 +43,26 @@ class Database
     }
 
 }
-  
-    if(!empty($_GET['id'])) 
-    {
-        $id2 = checkInput($_GET['id']);
-    }
-
-    if(!empty($_POST)) 
-    {
-        $id2 = checkInput($_POST['id']);
+   
+       
         $db = Database::connect();
-        $statement1 = $db->prepare("DELETE FROM panier WHERE article = ?");
-        $statement1->execute(array($id2));
-        $statement = $db->prepare("DELETE FROM article WHERE id = ?");
-        $statement->execute(array($id2));
-        Database::disconnect();
+        $statement = $db->prepare('SELECT * FROM panier WHERE panier.numpanier = ?');
+        $statement->execute(array($id));
         
-        if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
-                {
-                    header("Location: ../vendeur/espace_vendeur.php");
+                        while($panier = $statement->fetch()) 
+                        {
+                            $statement3 = $db->prepare('SELECT * FROM article WHERE article.type =1 AND article.id = ?');
+                            $statement3->execute(array($panier['article']));
+                            $article = $statement3->fetch();
+                            $statement4 = $db->prepare("DELETE FROM panier WHERE panier.numpanier = ? AND panier.article = ?");
+                            $statement4->execute(array($id, $article['id']));
+                             $statement2 = $db->prepare("DELETE FROM article WHERE article.type =1 AND id = ?");
+                            $statement2->execute(array($panier['article']));
+                            
 
-                }
-                elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
-                    header("Location: ../admin/profilAdmin.php");
-                }
-    }
+                        }
+        Database::disconnect();
+
 
     function checkInput($data) 
     {
@@ -111,30 +104,24 @@ class Database
         <div class="container">
         
         <div class="titrecat">
-        Supprimer un article
+        Commande
             <div class="container separation"></div>
         </div>
         <br><br>
             
         </div>    
             
-       <div class="container validationsup">
+       <div class="container validation">
             <div class="row">
 
-                <form class="form" action="supprimerArticle.php?id=<?php echo $id2; ?>" role="form" method="post">
-                    <input type="hidden" name="id" value="<?php echo $id2;?>"/>
-                    <h4>Etes vous sur de vouloir supprimer cette article ?</h4>
-                    </br>
-                    <div class="form-actions">
-                      <button type="submit" class="btn btn-success" >Oui</button>
-
-                    </div>
-                </form>
+                
+                    <h4>Votre commande à bien été passée !!!</h4>
+                    </br></br></br></br></br></br></br></br></br></br>
+       
             </div>
         </div>   
                     
-                
-    </div>
+
          
 
         </br></br>

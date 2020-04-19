@@ -1,5 +1,16 @@
 <?php
 
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['admin']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
 class Database
 {
     private static $dbHost = "localhost";
@@ -34,15 +45,25 @@ class Database
   
     if(!empty($_GET['id'])) 
     {
-        $id = checkInput($_GET['id']);
+        $id2 = checkInput($_GET['id']);
     }
 
     if(!empty($_POST)) 
     {
-        $id = checkInput($_POST['id']);
+        $id2 = checkInput($_POST['id']);
         $db = Database::connect();
-        $statement = $db->prepare("DELETE FROM vendeur WHERE id = ?");
-        $statement->execute(array($id));
+        $statement = $db->prepare("SELECT * FROM article WHERE vendeur = ?");
+        $statement->execute(array($id2));
+        $article = $statement->fetch();
+        
+        $statement2 = $db->prepare("DELETE FROM panier WHERE article = ?");
+        $statement2->execute(array($article['id']));
+        
+        $statement3 = $db->prepare("DELETE FROM article WHERE vendeur = ?");
+        $statement3->execute(array($id2));
+            
+        $statement4 = $db->prepare("DELETE FROM vendeur WHERE id = ?");
+        $statement4->execute(array($id2));
         Database::disconnect();
         header("Location: gestionVendeursAdmin.php"); 
     }
@@ -100,7 +121,7 @@ class Database
             <div class="row">
 
                 <form class="form" action="supprimerVendeur.php" role="form" method="post">
-                    <input type="hidden" name="id" value="<?php echo $id;?>"/>
+                    <input type="hidden" name="id" value="<?php echo $id2;?>"/>
                     <h4>Etes vous sur de vouloir supprimer ce vendeur ?</h4>
                     </br>
                     <div class="form-actions">

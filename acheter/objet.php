@@ -1,5 +1,5 @@
 <?php
-
+session_start(); 
     class Database
 {
     private static $dbHost = "localhost";
@@ -33,14 +33,35 @@
 }
 
 
+if(!empty($_POST)) 
+    {
+        $id2 = $_POST['id'];
+        
+        
+        if (isset($_SESSION['id']) && isset($_SESSION['acheteur']))
+                {
+                    $db = Database::connect();
+                    $statement = $db->prepare("INSERT INTO panier (numpanier, article) values(?, ?)");
+                    $statement->execute(array($_SESSION['id'], $id2));
+                    Database::disconnect();
+            header("Location: ../acheteur/Panier.php");
+
+                }
+                else{
+                    header("Location: ../acheteur/connexionAcheteur.php");
+                }
+    }
+
+
+else{
     if(!empty($_GET['id'])) 
     {
-        $id = checkInput($_GET['id']);
+        $id3 = $_GET['id'];
     }
      
     $db = Database::connect();
     $statement = $db->prepare("SELECT article.id, article.image, article.nom, article.description, article.prix, article.type, article.vendeur, article.categorie FROM article WHERE article.id = ?");
-    $statement->execute(array($id));
+    $statement->execute(array($id3));
     $article = $statement->fetch();
     Database::disconnect();
 
@@ -51,6 +72,10 @@
       $data = htmlspecialchars($data);
       return $data;
     }
+
+}
+
+    
 
 ?>
 
@@ -150,7 +175,14 @@
                     {
                         echo '<b> Prix : </b> '.$article['prix'].'€</p>
                         <br> <br>
-                    <a href="../acheteur/Panier.php" class="btn_bg btn_text">Ajouter au panier </a>
+                    <form class="form" action="objet.php?id='.$article["id"].'" role="form" method="post">
+                    <input type="hidden" name="id" value="'.$article["id"].'"/>
+                    
+                    <div class="form-actions">
+                      <button type="submit" class="btn_bg btn_text" >Ajouter au panier</button>
+
+                    </div>
+                </form>
                         ';
                     }
                     elseif($article['type'] == 2)
@@ -159,11 +191,11 @@
                         <br> <br>
                 <a href="../acheteur/Panier.php" class="btn_bg btn_text">Enchérir </a>';
                     }
-                    elseif($article['type'] == 2)
+                    elseif($article['type'] == 3)
                     {
                         echo '<b> Prix de départ : </b> '.$article['prix'].'€</p>
                         <br> <br>
-                <a href="../acheteur/Panier.php" class="btn_bg btn_text">Faire une offre </a>';
+                <a href="../acheteur/offre.php" class="btn_bg btn_text">Faire une offre </a>';
                     }
                     
                     ?>

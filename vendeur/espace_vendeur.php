@@ -1,5 +1,16 @@
 <?php
 
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
     class Database
 {
     private static $dbHost = "localhost";
@@ -32,32 +43,15 @@
 
 }
 
-    $id=$pseudo='';
-
-    if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
-if(!empty($_GET['pseudo'])) 
-    {
-        $pseudo = checkInput($_GET['pseudo']);
-    }
      
     $db = Database::connect();
 
-    if(!empty($pseudo)){
-        $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.pseudo = ?");
-    $statement->execute(array($pseudo));
-    $vendeur = $statement->fetch();
-    Database::disconnect();
-    }
-       
-    else{
+
         $statement = $db->prepare("SELECT vendeur.id, vendeur.pseudo, vendeur.mail, vendeur.photoprofil, vendeur.photofond FROM vendeur WHERE vendeur.id = ?");
     $statement->execute(array($id));
     $vendeur = $statement->fetch();
     Database::disconnect();
-    }
+    
     
 
     function checkInput($data) 
@@ -120,9 +114,9 @@ if(!empty($_GET['pseudo']))
                 
                 <p><b>Image de fond:</b></p>
                 <img src="../images/<?php echo $vendeur['photofond'];?>" style="width:300px; height:200px;">
-           </br>
-                <a class="btn btn-warning" style="margin:0 auto" href="modifierVendeur.php?id=<?php echo $id ?>">Modifier</a>
-                   
+           </br></br>
+                <a class="btn btn-warning" style="margin:0 auto" href="modifierVendeur.php">Modifier</a>
+                   </br></br>
                </div>
                
                 <div class="col-md-7">   
@@ -148,7 +142,7 @@ if(!empty($_GET['pseudo']))
                             echo '<td>'. $article['type'] . '</td>';
                             echo '<td>'. $article['prix'] . '</td>';
                             echo '<td>';
-                            echo '<a type="button" class="btn btn-info" href="../gestionarticle/voirArticle.php?id='.$vendeur['id'].'">Aperçu</a>';
+                            echo '<a type="button" class="btn btn-info" href="../gestionarticle/voirArticle.php?id='.$article['id'].'">Aperçu</a>';
                             
                             echo '</td></tr>';
     
@@ -159,7 +153,7 @@ if(!empty($_GET['pseudo']))
                          
                     </tbody>
                  </table>
-                    <a type="button" class="btn btn-primary ajouter" href="../gestionarticle/ajouterArticles.php?id=<?php echo $id; ?>">Ajouter</a>
+                    <a type="button" class="btn btn-primary ajouter" href="../gestionarticle/ajouterArticles.php">Ajouter</a>
 
                     </div>
                 </div>

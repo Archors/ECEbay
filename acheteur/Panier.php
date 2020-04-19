@@ -41,14 +41,6 @@ else{
     }
 
 }
-
-
-        $db = Database::connect();
-        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail FROM acheteur WHERE acheteur.id = ?");
-        $statement->execute(array($id));
-        $acheteur = $statement->fetch();
-        Database::disconnect();
-    
      
     
 
@@ -59,6 +51,8 @@ else{
       $data = htmlspecialchars($data);
       return $data;
     }
+
+$total=0;
 
 ?>
 
@@ -113,22 +107,26 @@ else{
                         
                     </thead>
                     <tbody>
-                     <tr>
-                            <td>caca</td>
-                            <td>zizi</td>
-                            <td>prout</td>
-    
-                        </tr>
-                        <tr>
-                             <td>caca</td>
-                            <td>zizi</td>
-                            <td>prout</td>
-                        </tr>
-                        <tr>
-                            <td>caca</td>
-                            <td>zizi</td>
-                            <td>prout</td>
-                        </tr>
+                     <?php
+                        $db = Database::connect();
+                        $statement = $db->prepare("SELECT panier.id, panier.article FROM panier WHERE panier.numpanier = ?");
+                        $statement->execute(array($id));
+                        while($panier = $statement->fetch()) 
+                        {
+                              echo 'salut';      
+                        $statement2 = $db->prepare("SELECT article.id, article.image, article.nom, article.prix FROM article WHERE article.id = ?");
+                        $statement2->execute(array($panier["article"]));
+                             $article = $statement2->fetch();
+                            echo '<tr>';
+                            echo '<td><img src="../images/'.$article['image'].'" style="width:50px; height:50px"></td>';
+                            echo '<td>'. $article['nom'] . '</td>';
+                            echo '<td>'. $article['prix'] . '€</td>';
+
+                            echo '</tr>';
+                            $total=$total+$article['prix'];
+                        }
+                        Database::disconnect();
+                      ?>
                     </tbody>
                 </table>
                 
@@ -136,9 +134,25 @@ else{
                 
                 <div class="col-md-2" style="margin:0 auto">
                     <div class="totalpanier">
-                        <h4>total : </h4>
+                        <h4>total : <?php echo $total; ?>€</h4>
                         </br>
-                        <button class="passercommande">Passer commande</button>
+                    <?php
+                        $db = Database::connect();
+                        $statement3 = $db->prepare("SELECT acheteur.id, acheteur.ville FROM acheteur WHERE acheteur.id = ?");
+                        $statement3->execute(array($id));
+                        $acheteur = $statement3->fetch();
+                        Database::disconnect();
+                        if(!empty($acheteur['ville']))
+                        {
+                            echo'<a href="passerCommande.php" class="passercommande">Passer commande</a>';
+                        }
+                        else
+                        {
+                            echo'<a href="formulaireCommande.php" class="passercommande">Passer commande</a>';
+                        }
+
+                    ?>
+                        
                         
                     </div>
                 

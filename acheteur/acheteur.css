@@ -1,13 +1,14 @@
 .totalpanier{
     padding:10px;
     width:300px;
-    background:#A09776;
+    background:#DCDCDC;
     border-radius: 5px;
+   
 }
 
 .passercommande{
     width:100%;
-    background:#4F4537;
+    background:#000;
     border-radius: 10px;
     color:#fff;
     border-width:1px;

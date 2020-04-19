@@ -1,4 +1,14 @@
 <?php
+session_start();                                
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
 
 class Database
 {
@@ -33,10 +43,7 @@ class Database
 }
 
 
- if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
+
 
 
 $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$imageprofilError = $imageprofil = $imagefondError = $imagefond = "";
@@ -46,7 +53,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
     {
         $pseudo               = checkInput($_POST['pseudo']);
         $mail        = checkInput($_POST['mail']);
-        $password              = checkInput(password_hash($_POST['password'], PASSWORD_DEFAULT));
+       
         $imageprofil              = checkInput($_FILES["imageprofil"]["name"]);
         $imagefond             = checkInput($_FILES["imagefond"]["name"]);
         $imagePath1          = '../images/'. basename($imageprofil);
@@ -73,11 +80,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
             $isSuccess = false;
         }
 
-        if(empty($password)) 
-        {
-            $passwordError = 'Ce champ ne peut pas être vide';
-            $isSuccess = false;
-        } 
+        
         
     
         if($imageprofil != "")
@@ -140,36 +143,36 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                 if($imagefond == "")
                 {
                     $db = Database::connect();
-                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, motdepasse = ? WHERE id = ?");
-                $statement->execute(array($pseudo,$mail,$password,$id));
+                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$id));
                     Database::disconnect();
                     
     
-                    header("Location: espace_vendeur.php?id=$id");
+                    header("Location: espace_vendeur.php");
                 }
                 else{
                     $db = Database::connect();
-                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, motdepasse = ?, photofond = ? WHERE id = ?");
-                $statement->execute(array($pseudo,$mail,$password, $imagefond,$id));
+                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, photofond = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail, $imagefond,$id));
                     Database::disconnect();
-                    header("Location: espace_vendeur.php?id=$id");
+                    header("Location: espace_vendeur.php");
                 }
             }
             else{
                 if($imagefond == "")
                 {
                     $db = Database::connect();
-                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, motdepasse = ?, photoprofil = ? WHERE id = ?");
-                $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
+                    $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, photoprofil = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$imageprofil,$id));
                     Database::disconnect();
-                    header("Location: espace_vendeur.php?id=$id");
+                    header("Location: espace_vendeur.php");
                 }
                 else{
                     $db = Database::connect();
-                $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, password = ?, photoprofil = ?, photofond = ? WHERE id = ?");
-                $statement->execute(array($pseudo,$mail,$password,$imageprofil,$id));
+                $statement = $db->prepare("UPDATE vendeur set pseudo = ?, mail = ?, photoprofil = ?, photofond = ? WHERE id = ?");
+                $statement->execute(array($pseudo,$mail,$imageprofil,$id));
                     Database::disconnect();
-                    header("Location: espace_vendeur.php?id=$id");
+                    header("Location: espace_vendeur.php");
                 }
             }
     
@@ -185,7 +188,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         $vendeur = $statement->fetch();
         $pseudo          = $vendeur['pseudo'];
         $mail    = $vendeur['mail'];
-        $password         = $vendeur['motdepasse'];
+     
         $imageprofil       = $vendeur['photoprofil'];
         $imagefond          = $vendeur['photofond'];
         Database::disconnect();
@@ -243,7 +246,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
         </div>    
             
        <div class="container">
-            <form class="form" action="<?php echo 'modifierVendeur.php?id='.$id;?>" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="modifierVendeur.php" role="form" method="post" enctype="multipart/form-data" >
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
@@ -256,11 +259,7 @@ $pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$image
                         <input type="text" class="form-control" id="mail" name="mail" placeholder="Mail" value="<?php echo $mail;?>">
                         <span class="help-inline"><?php echo $mailError;?></span>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?php echo $password;?>">
-                        <span class="help-inline"><?php echo $passwordError;?></span>
-                    </div>
+                    
                    </div>
                 <div class="col-md-6">  
                     </br>

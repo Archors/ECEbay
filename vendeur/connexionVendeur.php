@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Database
 {
     private static $dbHost = "localhost";
@@ -52,6 +52,8 @@ class Database
                               {
                                 if (password_verify($password, $vendeur['motdepasse'])) {
                                     $test=$vendeur['id'];
+                                    $_SESSION['id'] = $vendeur['id'];
+                                    $_SESSION['vendeur'] = 'vendeur';
                                 header("Location: espace_vendeur.php");
                                 } else {
                                      $test="erreur de connexion";

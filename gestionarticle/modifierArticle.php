@@ -1,5 +1,19 @@
 <?php
      
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+    $id=$_SESSION['id'];
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
     class Database
 {
     private static $dbHost = "localhost";
@@ -34,7 +48,7 @@
 
  if(!empty($_GET['id'])) 
     {
-        $id = checkInput($_GET['id']);
+        $id2 = checkInput($_GET['id']);
     }
  
     $nomError = $descriptionError = $prixError = $categorieError = $imageError = $typeError = $dateError = $nom = $description = $prix = $categorie = $image = $type = $date = "";
@@ -119,20 +133,35 @@
                 
                 $db = Database::connect();
                 $statement = $db->prepare("UPDATE article set nom= ?,description= ?,prix= ?,categorie= ?,type= ?,date= ? WHERE id = ?");
-                $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$id));
+                $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$id2));
                 Database::disconnect();
+                
+                if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+                {
+                    header("Location: ../vendeur/espace_vendeur.php");
 
-                header("Location: voirArticle.php?id=$id");
+                }
+                elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+                    header("Location: ../admin/profilAdmin.php");
+                }
+                
             
         }
         else
         {
                 $db = Database::connect();
                 $statement = $db->prepare("UPDATE article set nom= ?,description= ?,prix= ?,categorie= ?,type= ?,date= ?,image= ? WHERE id = ?");
-                $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id));
+                $statement->execute(array($nom,$description,$prix,$categorie,$type,$date,$image,$id2));
                 Database::disconnect();
 
-                    header("Location: voirArticle.php?id=$id");
+                if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+                {
+                    header("Location: ../vendeur/espace_vendeur.php");
+
+                }
+                elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+                    header("Location: ../admin/profilAdmin.php");
+                }
                 
         }
     }
@@ -142,7 +171,7 @@
     {
         $db = Database::connect();
         $statement = $db->prepare("SELECT * FROM article where id = ?");
-        $statement->execute(array($id));
+        $statement->execute(array($id2));
         $article = $statement->fetch();
         $nom          = $article['nom'];
         $description    = $article['description'];
@@ -197,7 +226,7 @@
         </div>    
             
        <div class="container">
-           <form class="form" action="modifierArticle.php?id=<?php echo $id; ?>" role="form" method="post" enctype="multipart/form-data">
+           <form class="form" action="modifierArticle.php?id=<?php echo $id2; ?>" role="form" method="post" enctype="multipart/form-data">
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">

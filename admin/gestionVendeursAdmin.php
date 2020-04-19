@@ -1,5 +1,17 @@
 <?php
 
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['admin']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
+
 class Database
 {
     private static $dbHost = "localhost";

@@ -51,17 +51,11 @@ class Database
     }
 
 
-$pseudoError = $mailError = $passwordError = $pseudo = $mail = $password =$nomError = $nom = $prenomError = $prenom = "";
 $typecarte = $nomcarte = $codecarte = $datecarte = $cryptogramme = $pays = $ville = $codepostal = $adresse1 = $adresse2 = $tel = "";
 $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogrammeError = $paysError = $villeError = $codepostalError = $adresse1Error = $adresse2Error = $telError = "";    
     
-    
     if(!empty($_POST)) 
     {
-        $pseudo               = checkInput($_POST['pseudo']);
-        $mail        = checkInput($_POST['mail']);
-        $nom             = checkInput($_POST['nom']);
-        $prenom             = checkInput($_POST['prenom']);
         $typecarte              = checkInput($_POST['typecarte']);
         $nomcarte              = checkInput($_POST['nomcarte']);
         $codecarte              = checkInput($_POST['codecarte']);
@@ -74,25 +68,11 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
         $adresse1              = checkInput($_POST['adresse1']);
         $adresse2              = checkInput($_POST['adresse2']);
         $tel              = checkInput($_POST['tel']);
+        
+      
         $isSuccess          = true;
 
 
-        
-        if(empty($pseudo)) 
-        {
-            $pseudoError = 'Ce champ ne peut pas être vide';
-            $isSuccess = false;
-        }
-        if(empty($mail)) 
-        {
-            $mailError = 'Ce champ ne peut pas être vide';
-            $isSuccess = false;
-        }
-        
-        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        $mailError = "Invalid email format";
-            $isSuccess = false;
-        }
         
         if(empty($typecarte)) 
         {
@@ -144,46 +124,22 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
             $telError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         }
+        
+        
           
         
         if($isSuccess) 
         {
             
                     $db = Database::connect();
-                    $statement = $db->prepare("UPDATE acheteur set pseudo = ?, mail = ?, nom = ?, prenom = ?, telephone = ?, pays = ?, ville = ?, codepostal = ?, adresse1 = ?, adresse2 = ?, typecarte = ?, nomcarte = ?, codecarte = ?, cryptogramme = ?, datecarte = ? WHERE id = ?");
-                    $statement->execute(array($pseudo,$mail,$nom,$prenom,$tel,$pays,$ville,$codepostal,$adresse1,$adresse2,$typecarte,$nomcarte,$codecarte,$cryptogramme,$datecarte,$id));
+                    $statement = $db->prepare("UPDATE acheteur set typecarte = ?, nomcarte = ?,codecarte = ?,datecarte = ?,cryptogramme = ?,pays = ?,ville = ?,codepostal = ?,adresse1 = ?,adresse2 = ?,telephone = ? WHERE id = ?");
+                    $statement->execute(array($typecarte, $nomcarte, $codecarte, $datecarte, $cryptogramme, $pays, $ville, $codepostal, $adresse1, $adresse2, $tel, $id));
                     Database::disconnect();
-                    header("Location: profilAcheteur.php");
+                    header("Location: passerCommande.php");
     
         }
     }
 
-
-    else 
-    {
-        $db = Database::connect();
-        $statement = $db->prepare("SELECT * FROM acheteur where id = ?");
-        $statement->execute(array($id));
-        $acheteur = $statement->fetch();
-        $pseudo          = $acheteur['pseudo'];
-        $mail    = $acheteur['mail'];
-        
-        $nom       = $acheteur['nom'];
-        $prenom          = $acheteur['prenom'];
-        $tel          = $acheteur['telephone'];
-        $pays          = $acheteur['pays'];
-        $ville          = $acheteur['ville'];
-        $codepostal          = $acheteur['codepostal'];
-        $adresse1          = $acheteur['adresse1'];
-        $adresse2          = $acheteur['adresse2'];
-        $typecarte          = $acheteur['typecarte'];
-        $nomcarte          = $acheteur['nomcarte'];
-        $datecarte          = $acheteur['datecarte'];
-        $codecarte          = $acheteur['codecarte'];
-        $cryptogramme          = $acheteur['cryptogramme'];
-        
-        Database::disconnect();
-    }
 
     function checkInput($data) 
     {
@@ -228,7 +184,7 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
         <div class="container">
         
         <div class="titrecat">
-        Modifier Profil
+        Info paiement
 
             <div class="container separation"></div>
         </div>
@@ -237,31 +193,10 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
         </div>    
             
        <div class="container">
-            <form class="form" action="modifierAcheteur.php" role="form" method="post" enctype="multipart/form-data" >
+            <form class="form" action="formulaireCommande.php" role="form" method="post" enctype="multipart/form-data" >
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="pseudo">Pseudo:</label>
-                        <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" value="<?php echo $pseudo;?>">
-                        <span class="help-inline"><?php echo $pseudoError;?></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="mail">mail:</label>
-                        <input type="text" class="form-control" id="mail" name="mail" placeholder="Mail" value="<?php echo $mail;?>">
-                        <span class="help-inline"><?php echo $mailError;?></span>
-                    </div>
-                   <div class="form-group">
-                        <label for="nom">Nom:</label>
-                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" value="<?php echo $nom;?>">
-                        <span class="help-inline"><?php echo $nomError;?></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="prenom">Prénom:</label>
-                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" value="<?php echo $prenom;?>">
-                        <span class="help-inline"><?php echo $prenomError;?></span>
-                    </div>
-                   <div class="form-group">
                         <label for="typecarte">Type carte:</label></br>
                         <input type="radio" name="typecarte" checked value="cb">CB
                         <input type="radio" name="typecarte" checked value="visa">Visa
@@ -278,18 +213,12 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
                         <input type="text" class="form-control" id="codecarte" name="codecarte" placeholder="code" value="<?php echo $codecarte;?>">
                         <span class="help-inline"><?php echo $codecarteError;?></span>
                     </div>
-                    <div class="form-group">
+                   <div class="form-group">
                         <label for="datecarte">Date:</label>
                         <input type="date" class="form-control" id="datecarte" name="datecarte" value="<?php echo $datecarte;?>">
                         <span class="help-inline"><?php echo $datecarteError;?></span>
                     </div>
-                    
-                    
-                   </div>
-               <br>
-                <div class="col-md-6">  
-                    
-                     <div class="form-group">
+                   <div class="form-group">
                         <label for="cryptogramme">Cryptogramme:</label>
                         <input type="text" class="form-control" id="cryptogramme" name="cryptogramme" placeholder="Crypto" value="<?php echo $cryptogramme;?>">
                         <span class="help-inline"><?php echo $cryptogrammeError;?></span>
@@ -299,7 +228,12 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
                         <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays" value="<?php echo $pays;?>">
                         <span class="help-inline"><?php echo $paysError;?></span>
                     </div>
-                    <div class="form-group">
+                    
+                   </div>
+               <br>
+                <div class="col-md-6">  
+                    
+                     <div class="form-group">
                         <label for="ville">Ville:</label>
                         <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville" value="<?php echo $ville;?>">
                         <span class="help-inline"><?php echo $villeError;?></span>
@@ -330,7 +264,7 @@ $typecarteError = $nomcarteError = $codecarteError = $datecarteError = $cryptogr
                 </div>
                
                 <div class="form-actions">
-                        <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Modifier</button>
+                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Ajouter</button>
                         
                    </div>
                </div>

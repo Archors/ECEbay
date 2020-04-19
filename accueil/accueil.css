@@ -83,17 +83,40 @@
         background-color: #000;
     }
     
-    #myCarousel .carousel-item {
-        padding: 10% 10%;
-    }
-    
-    #myCarousel .carousel-item h3 {
-        color: #000;
-        font-style: italic;
-    }
+
+#carousel_ECEBay{
+    width:100%;
+    margin:0 auto;
+    margin-top:-40px;
+}
+
+.carousel-item img{
+    width:100%;
+    height:auto;
+}
+
+.carousel_titre{
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 40px;
+color: #FFFFFF;
+text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+padding-bottom:5px;
+}
+
+.carousel_carre{
+width: 255px;
+height: 65px;
+border: 4px solid #ffffff;
+box-sizing: border-box;
+box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+text-align:center;
+}
+
     
     .fas.fa-chevron-left,
     .fas.fa-chevron-right {
         background-image: none;
-        color: #FA1D5D;
+        color: #FF8C00;
     }

@@ -1,5 +1,16 @@
 <?php
 
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['admin']))
+{
+    $id=$_SESSION['id'];
+   
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
+
     class Database
 {
     private static $dbHost = "localhost";
@@ -33,10 +44,6 @@
 }
 
 
-    if(!empty($_GET['id'])) 
-    {
-        $id = checkInput($_GET['id']);
-    }
      
     $db = Database::connect();
     $statement = $db->prepare("SELECT admin.id, admin.pseudo, admin.mail, admin.idvendeur,admin.imageprofil,admin.imagefond FROM admin WHERE admin.id = ?");
@@ -108,7 +115,7 @@
                 <img src="../images/<?php echo $admin['imagefond'];?>" style="width:300px; height:200px;">
                 </br></br>
                 
-                <a class="btn btn-warning" style="margin:0 auto" href="modifierAdmin.php?id=<?php echo $id ?>">Modifier</a>
+                <a class="btn btn-warning" style="margin:0 auto" href="modifierAdmin.php">Modifier</a>
                    
                </div>
                

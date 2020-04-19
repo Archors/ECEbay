@@ -44,7 +44,7 @@ else{
 
 
         $db = Database::connect();
-        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail FROM acheteur WHERE acheteur.id = ?");
+        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail, acheteur.telephone, acheteur.pays, acheteur.ville, acheteur.codepostal, acheteur.adresse1, acheteur.adresse2, acheteur.typecarte, acheteur.nomcarte, acheteur.codecarte, acheteur.datecarte FROM acheteur WHERE acheteur.id = ?");
         $statement->execute(array($id));
         $acheteur = $statement->fetch();
         Database::disconnect();
@@ -103,7 +103,7 @@ else{
             
        <div class="container">
            <div class="row">
-               <div class="col-md-12">
+               <div class="col-md-6">
 
                 <p><b>Pseudo:</b> <?php echo ' '.$acheteur['pseudo'];?></p>
                 
@@ -111,16 +111,33 @@ else{
                 
                 <p><b>Prénom:</b> <?php echo ' '.$acheteur['prenom'];?></p> 
                 
-                <p><b>Adesse:</b> </p>
-                <p><b>Noméro:</b></p>
-                <p><b>Carte:</b> </p>
-                <p><b>Pays:</b> </p>
-                <p><b>Ville:</b> </p>
+                <p><b>Mail:</b> <?php echo ' '.$acheteur['mail'];?></p>
+                <p><b>Téléphone:</b><?php echo ' '.$acheteur['telephone'];?></p>
+                <p><b>Pays:</b> <?php echo ' '.$acheteur['pays'];?></p>
+                <p><b>Ville:</b> <?php echo ' '.$acheteur['ville'];?></p>
                 
-           </br>    
+                
+           </br> </br>    
+                   
+               </div>
+        <div class="col-md-6">
+                <p><b>Code postal:</b> <?php echo ' '.$acheteur['codepostal'];?></p>
+                <p><b>Adresse 1:</b> <?php echo ' '.$acheteur['adresse1'];?></p>
+                
+                <p><b>Adresse 2:</b> <?php echo ' '.$acheteur['adresse2'];?></p>
+                
+                <p><b>Type de carte:</b> <?php echo ' '.$acheteur['typecarte'];?></p> 
+                
+                <p><b>Nom de carte:</b> <?php echo ' '.$acheteur['nomcarte'];?></p>
+                <p><b>Code de carte:</b><?php echo ' '.$acheteur['codecarte'];?></p>
+                <p><b>Date de carte:</b> <?php echo ' '.$acheteur['datecarte'];?></p>
+               
+                
+           </br> </br>    
                    
                </div>
            <a class="btn btn-warning" style="margin:0 auto" href="modifierAcheteur.php">Modifier</a>
+        </br> 
            </div>
         
     

@@ -1,4 +1,17 @@
 <?php
+ session_start();                 
+ 
+if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
+{
+    $id=$_SESSION['id'];
+   
+}
+elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
+    $id=$_SESSION['id'];
+}
+else{
+    header("Location: connexionAcheteur.php");
+}
 
     class Database
 {
@@ -35,12 +48,12 @@
 
     if(!empty($_GET['id'])) 
     {
-        $id = checkInput($_GET['id']);
+        $id2 = checkInput($_GET['id']);
     }
      
     $db = Database::connect();
     $statement = $db->prepare("SELECT article.id, article.image, article.nom, article.description, article.prix, article.type, article.categorie FROM article WHERE article.id = ?");
-    $statement->execute(array($id));
+    $statement->execute(array($id2));
     $article = $statement->fetch();
     Database::disconnect();
 
@@ -144,8 +157,8 @@
                     </br>
                 <p><b>Prix:</b><?php echo '  '.$article['prix'];?>€</p>
                    </br>
-                <a type="button" class="btn btn-warning" href="modifierArticle.php?id=<?php echo $id; ?>">Modifier</a>
-                <a type="button" class="btn btn-danger" href="supprimerArticle.php?id=<?php echo $id; ?>">Supprimer</a>
+                <a type="button" class="btn btn-warning" href="modifierArticle.php?id=<?php echo $id2; ?>">Modifier</a>
+                <a type="button" class="btn btn-danger" href="supprimerArticle.php?id=<?php echo $id2; ?>">Supprimer</a>
                </div>
                
                 <div class="col-md-6">   
