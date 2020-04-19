@@ -195,7 +195,7 @@ else{
                     {
                         echo '<b> Prix de départ : </b> '.$article['prix'].'€</p>
                         <br> <br>
-                <a href="../acheteur/offre.php" class="btn_bg btn_text">Faire une offre </a>';
+                <a href="../acheteur/offre.php?id='.$article['id'].'" class="btn_bg btn_text">Faire une offre </a>';
                     }
                     
                     ?>

@@ -99,6 +99,7 @@ if(!empty($_GET['id']))
         
     <!-- Header navbar-->
         <?php include '../template/header.php'; ?>
+        
    
         <!-- titre de la categorie -->
         <div class="container-fluid">
@@ -165,7 +166,7 @@ if(!empty($_GET['id']))
                         <br>
                         <span class="description_objet">Ferailles et Trésor</span>
                         <br>
-                        <span class="description_objet">'.$article['prix'].'</span>
+                        <span class="description_objet">'.$article['prix'].'€</span>
                         <br>
                         <br>
                         <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>

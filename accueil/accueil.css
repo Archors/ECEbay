@@ -83,7 +83,7 @@
         background-color: #000;
     }
     
-
+    
 #carousel_ECEBay{
     width:100%;
     margin:0 auto;
@@ -113,10 +113,3 @@ box-sizing: border-box;
 box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
 text-align:center;
 }
-
-    
-    .fas.fa-chevron-left,
-    .fas.fa-chevron-right {
-        background-image: none;
-        color: #FF8C00;
-    }

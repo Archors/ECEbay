@@ -156,7 +156,47 @@ else{
 
                     </br>
                 <p><b>Prix:</b><?php echo '  '.$article['prix'];?>€</p>
-                   </br>
+                   
+                    <?php 
+                        
+                        if($article['type'] == 3)
+                        {
+                            echo '<table class="table table-stripped">
+                            <thead style="text-align:center">
+                                <tr>
+                                    <th>Offre</th>
+                                    <th>Choix</th>
+                   
+                                </tr>
+
+
+                            </thead>
+                            <tbody>';
+                             
+                                $db = Database::connect();
+                                $statement2 = $db->prepare('SELECT negociation.id, negociation.offre FROM negociation WHERE negociation.iditem = ? ORDER BY negociation.id ');
+                            $statement2->execute(array($article['id']));
+                            
+                                while($nego = $statement2->fetch()) 
+                                {
+                                    echo '<tr style="text-align:center">';
+                                    echo '<td>'. $nego['offre'] . '€</td>';
+                                    
+
+                                    echo '<td>';
+                                    echo '<a type="button" class="btn btn-info" href="">Oui</a>';
+                                    echo ' ';
+                                    echo '<a type="button" class="btn btn-danger" href="">Non</a>';
+                                    echo '</td>';
+                                    echo '</tr>';
+                                }
+                                Database::disconnect();
+                      
+                            echo '</tbody>
+                            </table>';
+                        }
+                    ?>
+                    </br></br>
                 <a type="button" class="btn btn-warning" href="modifierArticle.php?id=<?php echo $id2; ?>">Modifier</a>
                 <a type="button" class="btn btn-danger" href="supprimerArticle.php?id=<?php echo $id2; ?>">Supprimer</a>
                </div>

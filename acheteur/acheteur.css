@@ -36,17 +36,11 @@ height: 0px;
 
 top: 345px;
 
-border: 1px solid #4F4537;
+border: 1px solid #000;
     text-align: center;
 }
 
-.form{
-width: 800px;
-height: 98px;
-background: rgba(160, 151, 118, 0.4);
-border-radius: 20px;
-text-align: center;
-}
+
 
 
 .corps{
@@ -106,4 +100,16 @@ margin:0 auto;
 margin:0 auto;
     text-align:center;
 
+}
+
+.offre
+{
+     width:100px;
+    height:45px;
+    background:#000;
+    border-radius: 10px;
+    color:#fff;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
 }

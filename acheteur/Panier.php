@@ -113,14 +113,49 @@ $total=0;
                         $statement->execute(array($id));
                         while($panier = $statement->fetch()) 
                         {
-                              echo 'salut';      
-                        $statement2 = $db->prepare("SELECT article.id, article.image, article.nom, article.prix FROM article WHERE article.id = ?");
+                               
+                        $statement2 = $db->prepare("SELECT article.id, article.image, article.nom, article.prix, article.type FROM article WHERE article.id = ?");
                         $statement2->execute(array($panier["article"]));
                              $article = $statement2->fetch();
-                            echo '<tr>';
-                            echo '<td><img src="../images/'.$article['image'].'" style="width:50px; height:50px"></td>';
-                            echo '<td>'. $article['nom'] . '</td>';
-                            echo '<td>'. $article['prix'] . '€</td>';
+                            
+                            if($article['type'] == 1)
+                            {
+                                echo '<tr>';
+                                echo '<td><img src="../images/'.$article['image'].'" style="width:50px; height:50px"></td>';
+                                echo '<td>'. $article['nom'] . '</td>';
+
+                                 echo '<td>'. $article['prix'] . '€</td>';
+                            }
+                            if($article['type'] == 2)
+                            {
+                                echo '<tr>';
+                                echo '<td><img src="../images/'.$article['image'].'" style="width:50px; height:50px"></td>';
+                                echo '<td>'. $article['nom'] . '</td>';
+                                echo '<td>'. $article['prix'] . '€</td>';
+                            }
+                            if($article['type'] == 3)
+                            {
+                                
+                                $statement3 = $db->prepare("SELECT * FROM negociation WHERE iditem = ? AND idacheteur = ?");
+                                $statement3->execute(array($article['id'], $id));
+                                $negociation=$statement3->fetch();
+                                
+                              
+                                    echo '<tr>';
+                                    echo '<td><img src="../images/'.$article['image'].'" style="width:50px; height:50px"></td>';
+                                    echo '<td>'. $article['nom'] . '</td>';
+
+                                    if($negociation['offre'] != 0){
+                                        echo '<td>'. $negociation['offre'] . '€</td>';
+                                    }
+                                    elseif($negociation['offre'] == 0){
+                                        echo '<td><a href="reoffre.php?id='.$article['id'].'" type="button">renégocier</a></td>';
+                                    }
+                              
+                                
+                                
+                            }
+                            
 
                             echo '</tr>';
                             $total=$total+$article['prix'];

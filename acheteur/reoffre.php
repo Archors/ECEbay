@@ -69,10 +69,8 @@ $offre = $offreError = "";
         { 
     
             $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO negociation (iditem, idacheteur,offre,compteur) values(?, ?, ?, ?)");
-            $statement->execute(array($id1, $id, $offre, 1));
-             $statement2 = $db->prepare("INSERT INTO panier (numpanier, article) values(?, ?)");
-            $statement2->execute(array($id1, $id));
+            $statement = $db->prepare("UPDATE negociation set offre = ? WHERE iditem = ? AND idacheteur= ?");
+            $statement->execute(array($offre, $id1, $id));
             Database::disconnect();
                 header("Location: ../acheteur/panier.php");
      
@@ -132,7 +130,7 @@ $offre = $offreError = "";
             
        <div class="container">
            
-        <form class="form" action="offre.php?id=<?php echo $id1; ?>" role="form" method="post" enctype="multipart/form-data" >
+        <form class="form" action="reoffre.php?id=<?php echo $id1; ?>" role="form" method="post" enctype="multipart/form-data" >
             <div class="form-group">
                         <label for="offre">Faire une offre:</label>
                         <input type="number" step="0.01" class="form-control" id="offre" name="offre" placeholder="offre" value="<?php echo $offre;?>">
