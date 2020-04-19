@@ -47,7 +47,7 @@
                         <div class="carousel-caption">
                             <div class="row">
                                 <div class="col-md-2 offset-md-10">
-                                    <div class="carousel_carre"> <a href="../acheter/vip.php">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie_vip.php">
                                         <span class="carousel_titre"> Découvrir </span>
                                     </a>
                                     </div>
@@ -62,7 +62,7 @@
                         <div class="carousel-caption">
                             <div class="row">
                                 <div class="col-md-2 offset-md-10">
-                                    <div class="carousel_carre"> <a href="../acheter/musee.php">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie_musee.php">
                                         <span class="carousel_titre"> Découvrir </span>
                                     </a>
                                     </div>
@@ -76,7 +76,7 @@
                         <div class="carousel-caption">
                             <div class="row">
                                 <div class="col-md-2 offset-md-10">
-                                    <div class="carousel_carre"> <a href="../acheter/ferraille.php">
+                                    <div class="carousel_carre"> <a href="../acheter/categorie_ferraille.php">
                                         <span class="carousel_titre"> Découvrir </span>
                                     </a>
                                     </div>
