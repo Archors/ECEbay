@@ -122,7 +122,7 @@
                                 else{
                                     echo '<a class="dropdown-item" href="../acheteur/connexionAcheteur.php">Se connecter</a>
                                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Vous êtes nouveau ?</a>
+                        <a class="dropdown-item petit_texte">Vous êtes nouveau ?</a>
                         <a class="dropdown-item" href="../acheteur/inscriptionAcheteur.php"> Inscription  </a>';
                                 }
 
@@ -132,7 +132,7 @@
                         
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="../acheteur/panier.php"><i class="fas fa-shopping-cart"></i> Panier</a></li>
+                <li class="nav-item"><a class="nav-link" href="../acheteur/panier.php"><i class="fas fa-shopping-bag"></i> Panier</a></li>
             </ul>
         </div>
     </nav>

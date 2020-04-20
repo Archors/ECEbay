@@ -8,7 +8,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['admin']))
    
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionAdmin.php");
 }
 
     class Database
@@ -77,6 +77,13 @@ else{
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
     <link rel="stylesheet" href="gestionitems.css">
+        <style>
+    body{
+        <?php echo 'background-image:url(../images/'.$admin["imagefond"].');'; ?>
+        background-repeat: no-repeat;
+        background-size: cover; } 
+</style>
+
         
     </head>
     

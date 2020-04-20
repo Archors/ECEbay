@@ -1,4 +1,6 @@
 <?php
+
+//session et connexion à la base de données
 session_start(); 
     class Database
 {
@@ -32,12 +34,12 @@ session_start();
 
 }
 
-
+//recupe de l'id envoyé pour identifier l'article
 if(!empty($_POST)) 
     {
         $id2 = $_POST['id'];
         
-        
+        //si un acheteur est connecté...
         if (isset($_SESSION['id']) && isset($_SESSION['acheteur']))
                 {
                     $db = Database::connect();
@@ -52,13 +54,13 @@ if(!empty($_POST))
                 }
     }
 
-
+//sinon...
 else{
     if(!empty($_GET['id'])) 
     {
         $id3 = $_GET['id'];
     }
-     
+     //recupération des infos de l'article en question (son nom sa photo sa descrption ...)
     $db = Database::connect();
     $statement = $db->prepare("SELECT article.id, article.image, article.nom, article.description, article.prix, article.type, article.vendeur, article.categorie FROM article WHERE article.id = ?");
     $statement->execute(array($id3));
@@ -78,7 +80,7 @@ else{
     
 
 ?>
-
+<!-- html de la page-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -117,7 +119,7 @@ else{
         
         <div class="titrecat">
         <?php 
-                    
+                //verifier le type de l'article    
                         if($article['type'] == 1){
                             echo 'Achat immédiat';
                         }
@@ -134,7 +136,7 @@ else{
         <br><br>
         <div class="container-fluid">
             
-            
+            <!-- affichage des informations de l'article-->
                 <div class="row">
             
 
@@ -157,7 +159,7 @@ else{
                 <p class="texte_item"> <b> description :</b> <?php echo $article['description']; ?> </p>
                 <br>
                 <p class="texte_item"> <b> Vendeur : </b> <?php 
-                        
+                        //selectionner le vendeur de l'article
                             $db = Database::connect();
                             $statement2 = $db->prepare("SELECT vendeur.id, vendeur.pseudo FROM vendeur WHERE vendeur.id = ?");
                             $statement2->execute(array($article['vendeur']));
@@ -170,8 +172,18 @@ else{
                 <p class="texte_item"> 
                     
                     <?php 
+                    //différentes options en fonction du prix                 
                     
-                    if($article['type'] == 1)
+                    if(isset($_SESSION['id']) && isset($_SESSION['acheteur'])){
+                        $statement9 = $db->prepare("SELECT acheteur.id, acheteur.solde FROM acheteur WHERE acheteur.id = ?");
+                        $statement9->execute(array($_SESSION['id']));
+                        $acheteur = $statement9->fetch();
+                        if($acheteur['solde'] < $article['prix']){
+                            echo 'votre solde est insuffisant...';
+                        }
+                        else{
+                            
+                            if($article['type'] == 1)
                     {
                         echo '<b> Prix : </b> '.$article['prix'].'€</p>
                         <br> <br>
@@ -187,9 +199,64 @@ else{
                     }
                     elseif($article['type'] == 2)
                     {
-                        echo '<b> Valeur enchère : </b> '.$article['prix'].'€</p>
+                        $statement124 = $db->prepare('SELECT montantmax, id, idacheteur, MAX(montantmax) FROM enchere WHERE iditem= ?');
+                        $statement124->execute(array($article['id']));
+                        $montant = $statement124->fetch(); 
+                        
+                        if(!empty($montant['montantmax'])){
+                            echo '<b> Valeur enchère actuelle : </b> '.$montant['montantmax'].'€</p>';
+                        }
+                        else{
+                            echo '<b> Valeur enchère actuelle : </b> 0 enchère</p>';
+                        }
+                        
+                        echo '<br> <br>
+                <a href="../acheteur/enchere.php?id='.$article['id'].'" class="btn_bg btn_text">Enchérir </a>';
+                    }
+                    elseif($article['type'] == 3)
+                    {
+                        
+                       echo '<b> Prix de départ : </b> '.$article['prix'].'€</p>
                         <br> <br>
-                <a href="../acheteur/Panier.php" class="btn_bg btn_text">Enchérir </a>';
+                <a href="../acheteur/offre.php?id='.$article['id'].'" class="btn_bg btn_text">Faire une offre </a>';
+                    }
+                        
+                        }
+                    }
+                    else{
+                        
+                        if($article['type'] == 1)
+                    {
+                        echo '<b> Prix : </b> '.$article['prix'].'€</p>
+                        <br> <br>
+                    <form class="form" action="objet.php?id='.$article["id"].'" role="form" method="post">
+                    <input type="hidden" name="id" value="'.$article["id"].'"/>
+                    
+                    <div class="form-actions">
+                      <button type="submit" class="btn_bg btn_text" >Ajouter au panier</button>
+
+                    </div>
+                </form>
+                        ';
+                    }
+                    elseif($article['type'] == 2)
+                    {
+                        
+                        $statement124 = $db->prepare('SELECT montantmax, id, idacheteur, MAX(montantmax) FROM enchere WHERE iditem= ?');
+                        $statement124->execute(array($article['id']));
+                        $montant = $statement124->fetch(); 
+                        
+                        if(!empty($montant['montantmax'])){
+                            echo '<b> Valeur enchère actuelle : </b> '.$montant['montantmax'].'€</p>';
+                        }
+                        else{
+                            echo '<b> Valeur enchère actuelle : </b> 0 enchère</p>';
+                        }
+                        
+                        
+                       
+                        echo '<br> <br>
+                <a href="../acheteur/enchere.php?id='.$article['id'].'" class="btn_bg btn_text">Enchérir </a>';
                     }
                     elseif($article['type'] == 3)
                     {
@@ -198,11 +265,10 @@ else{
                 <a href="../acheteur/offre.php?id='.$article['id'].'" class="btn_bg btn_text">Faire une offre </a>';
                     }
                     
-                    ?>
                     
-                    
+                    }
 
-                
+                ?>
 
 
                 </div>
@@ -220,7 +286,7 @@ else{
 
 
 
-        
+    <!-- template du footer de la page-->    
 <?php include '../template/footer.php'; ?>
     </body>
 </html>

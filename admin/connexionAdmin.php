@@ -54,6 +54,9 @@ class Database
                               {
                                 if ($password == $admin['password']) {
                                     $test=$admin['id'];
+                                    $_SESSION = array();
+                                    session_destroy();
+                                    session_start();
                                      $_SESSION['id'] = $admin['id'];
                                     $_SESSION['admin'] = 'admin';
                                 header("Location: profilAdmin.php");

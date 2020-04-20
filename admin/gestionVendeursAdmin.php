@@ -8,7 +8,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['admin']))
    
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionAdmin.php");
 }
 
 

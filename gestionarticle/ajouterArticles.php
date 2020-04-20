@@ -14,7 +14,7 @@ elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
     $id2=$_SESSION['id'];
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionVendeur.php");
 }
 
      
@@ -152,6 +152,7 @@ else{
                 header("Location: ../vendeur/espace_vendeur.php");
             }
             
+            
         }
     }
 
@@ -259,7 +260,7 @@ else{
                     </div>
                     <div class="form-group">
                         <label for="date">Date:</label>
-                        <input type="date" id="date" name="date"> 
+                        <input type="datetime" id="date" name="date" placeholder="AAAA-MM-JJ HH:MM:SS"> 
                         <span class="help-inline"><?php echo $dateError;?></span>
                     </div>
                     <div class="form-group">

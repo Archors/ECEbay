@@ -1,4 +1,6 @@
 <?php
+
+//débuter une session et se connecter à la base de données
 session_start(); 
 class Database
 {
@@ -35,7 +37,9 @@ class Database
 
 ?>
 
-<?php 
+<?php
+
+//recuperer l'id de la categorie en question (à afficher)
 if(!empty($_GET['id'])) 
     {
         $id = $_GET['id'];
@@ -43,7 +47,7 @@ if(!empty($_GET['id']))
 
 ?>
 
-
+<!-- html de la page-->
 
 <!DOCTYPE html>
 <html>
@@ -77,6 +81,7 @@ if(!empty($_GET['id']))
 
             // recupere tous les elements ayant pour nom de classe "Element"
             elements = document.getElementsByClassName("items")
+
 
             // parcoure tous ces elements et les cache
             for (var i = 0; i < elements.length; i++) {
@@ -118,11 +123,11 @@ if(!empty($_GET['id']))
                     ?>
             <div class="separation"></div>
         </div>
-            
+            <!-- html de la recherche-->
         <div class="container-fluid">
              <div class="recherche">
             </br>
-             <form class="form" role="form" action="" methode="post" >
+             <form class="form" role="form" action="rechercher.php" methode="post" >
                    <input type="text" class="form-control" id="recherche" name="recherche" placeholder="recherche" value="">
                </form>
         </div>
@@ -135,12 +140,13 @@ if(!empty($_GET['id']))
             <div class="row">
                 <div class="col-md-2">
                     </br>
-                    <ul>
-                        <li><a onclick="visibilite('1');">Achat immédiat</a></li>
-                        <li><a onclick="visibilite('2');">Enchères</a></li>
-                        <li><a onclick="visibilite('3');">Meilleurs offres</a></li>
+                <!-- liste des trois types à choisir-->
+                    <ul style="list-style:none;">
+                        <li><a type="button" class="btn-vue" onclick="visibilite('1');">Achat immédiat</a></li>
+                        <li><a type="button" class="btn-vue" onclick="visibilite('2');">Enchères</a></li>
+                        <li><a type="button" class="btn-vue" onclick="visibilite('3');">Meilleurs offres</a></li>
                     </ul>
-                <div class="separation"></div>
+                
                 </br>
             </div>
             
@@ -148,15 +154,18 @@ if(!empty($_GET['id']))
   
                  
                 <div id="1" class="items" >
+                    <h4>Achats immédiats</h4>
+                    <div class="separation"></div>
+                    </br>
                     <div class="row">
-                    
+                    <!-- recuppération des informations pour l'item en question-->
                    <?php 
                     $db = Database::connect();
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=1');
                     $statement->execute(array($id));
                     while ($article = $statement->fetch()) 
                     {
-                 
+                 //affichage des informations récupérées
                         echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
                     <img class="imgobj" src="../images/'.$article['image'].'">
@@ -175,26 +184,30 @@ if(!empty($_GET['id']))
                 </div> ';
                     
                     }
-
+                //deconnexion à la base de données
                 Database::disconnect();
                     ?>
                 
                 
                 </div> </div>
-                
+                <!-- même principe mais pour l'item 2-->
                 <div id="2" class="items" style="display: none;">
-        
+                    <h4>Enchères</h4>
+                    <div class="separation"></div>
+                    </br>
 
                  <div class="row">
                     
                    <?php 
+                    //connexion à la base de données
                     $db = Database::connect();
+//selection des items utiles
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=2');
                     $statement->execute(array($id));
                     
                     while ($article = $statement->fetch()) 
                     {
-                 
+                 //affichage ligne par ligne de chaque item et de ses infos
                         echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
                     <img class="imgobj" src="../images/'.$article['image'].'">
@@ -213,7 +226,7 @@ if(!empty($_GET['id']))
                 </div> ';
                     
                     }
-
+                //deconnexion base de données
                 Database::disconnect();
                     ?>
                 
@@ -222,12 +235,14 @@ if(!empty($_GET['id']))
                 
                 
                 </div> 
-
+<!-- même chose mais pour la derniere catégorie-->
                 <div id="3" class="items" style="display: none;">
-        
+                <h4>Meilleurs offres</h4>
+                    <div class="separation"></div>
+                    </br>
 
                  <div class="row">
-                    
+                    <!--connexion et récupération des info des articles choisis-->
                    <?php 
                     $db = Database::connect();
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE categorie=? AND type=3');
@@ -235,7 +250,7 @@ if(!empty($_GET['id']))
                     
                     while ($article = $statement->fetch()) 
                     {
-                 
+                 //affichage ligne par ligne
                         echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
                     <img class="imgobj" src="../images/'.$article['image'].'">
@@ -254,7 +269,7 @@ if(!empty($_GET['id']))
                 </div> ';
                     
                     }
-
+                //deconnexion base de données
                 Database::disconnect();
                     ?>
                 
@@ -281,7 +296,7 @@ if(!empty($_GET['id']))
         
         </br></br>
         
-       
+    <!-- template du footer-->   
 <?php include '../template/footer.php'; ?>
         
     </body>

@@ -54,7 +54,9 @@ class Database
                               {
                                 if (password_verify($password, $acheteur['password'])) {
                                     $test=$acheteur['id'];
-
+                                    $_SESSION = array();
+                                    session_destroy();
+                                    session_start();
                                     $_SESSION['id'] = $acheteur['id'];
                                     $_SESSION['acheteur'] = 'acheteur';
                                 header("Location: profilAcheteur.php");
@@ -100,7 +102,7 @@ class Database
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
 
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="acheteur.css">
         
     </head>
     
@@ -125,39 +127,53 @@ class Database
         </div>    
             
        <div class="container">
-           <span class="help-inline" style="color:red;margin:0 auto;"><?php echo $test;?></span>
-            <form class="form" action="connexionAcheteur.php" role="form" method="post" enctype="multipart/form-data">
+           <span class="help-inline" style="margin:0 auto;"><?php echo $test;?></span>
+            <form action="connexionAcheteur.php" role="form" method="post" enctype="multipart/form-data">
+                <!-- On affiche sur une ligne, 6 colonnes, un formulaire a remplir sur le pseudo, puis sur la row d'apres le mail et enfin le mot de passe -->
+
            <div class="row">
-               <div class="col-md-12">
+               <div class="col-md-6 offset-md-3">
                     <div class="form-group">
-                        <label for="pseudo">Pseudo:</label>
-                        <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" value="<?php echo $pseudo;?>">
+            
+                            <input type="text" class="form" id="pseudo" name="pseudo" placeholder="Pseudo" value="<?php echo $pseudo;?>">
                         
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
                     <div class="form-group">
-                        <label for="mail">mail:</label>
-                        <input type="text" class="form-control" id="mail" name="mail" placeholder="Mail" value="<?php echo $mail;?>">
+
+                        <input type="text" class="form" id="mail" name="mail" placeholder="Mail" value="<?php echo $mail;?>">    
+             
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <input type="password" class="form" id="password" name="password" placeholder="Mot de passe" value="<?php echo $password;?>">
                         
                     </div>
-                    <div class="form-group">
-                        <label for="name">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?php echo $password;?>">
-                        
+                </div>
+            </div>
+<br>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">        
+                    <div class="form-actions"  style="margin:0 auto">
+                            <button type="submit" class="btn btn_sub"> <span class="btn_sub_text2"> Se connecter </span> </button> 
                     </div>
-                   </div>
-                    
-               
-                <div class="form-actions"  style="margin:0 auto">
-                        <button type="submit" class="btn btn-success"></span> Se connecter</button> 
-                   </div>
                </div>
+            </div>
                    
             </form>                             
                 
     </div>
          
 
-        </br></br>
+        </br></br> <br> <br> <br> <br>
 
         
         

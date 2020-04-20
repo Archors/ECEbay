@@ -125,6 +125,7 @@ $total=0;
                                 echo '<td>'. $article['nom'] . '</td>';
 
                                  echo '<td>'. $article['prix'] . '€</td>';
+                                $total=$total+$article['prix'];
                             }
                             if($article['type'] == 2)
                             {
@@ -158,7 +159,8 @@ $total=0;
                             
 
                             echo '</tr>';
-                            $total=$total+$article['prix'];
+                           
+                            
                         }
                         Database::disconnect();
                       ?>
@@ -169,26 +171,35 @@ $total=0;
                 
                 <div class="col-md-2" style="margin:0 auto">
                     <div class="totalpanier">
-                        <h4>total : <?php echo $total; ?>€</h4>
-                        </br>
+                        <div align="center">
+                        <span class="montant">Total achats immédiats : <?php echo $total; ?>€</span>
+
+               
                     <?php
                         $db = Database::connect();
-                        $statement3 = $db->prepare("SELECT acheteur.id, acheteur.ville FROM acheteur WHERE acheteur.id = ?");
+                        $statement3 = $db->prepare("SELECT acheteur.id, acheteur.ville, acheteur.solde FROM acheteur WHERE acheteur.id = ?");
                         $statement3->execute(array($id));
                         $acheteur = $statement3->fetch();
                         Database::disconnect();
-                        if(!empty($acheteur['ville']))
-                        {
-                            echo'<a href="passerCommande.php" class="passercommande">Passer commande</a>';
+                        
+                        if($acheteur['solde'] <= $total){
+                            echo 'solde insuffisant';
                         }
-                        else
-                        {
-                            echo'<a href="formulaireCommande.php" class="passercommande">Passer commande</a>';
+                        else{
+                            if(!empty($acheteur['ville']))
+                            {
+                                echo'<a href="passerCommande.php" class="passercommande">Passer commande</a>';
+                            }
+                            else
+                            {
+                                echo'<a href="formulaireCommande.php" class="passercommande">Passer commande</a>';
+                            }
                         }
+                        
 
                     ?>
                         
-                        
+                      </div>  
                     </div>
                 
                 </div>

@@ -11,7 +11,7 @@ elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
     $id=$_SESSION['id'];
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionVendeur.php");
 }
 
 class Database

@@ -7,7 +7,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['vendeur']))
    
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionVendeur.php");
 }
 
 class Database

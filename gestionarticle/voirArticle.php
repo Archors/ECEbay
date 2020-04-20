@@ -10,7 +10,7 @@ elseif(isset($_SESSION['id']) && isset($_SESSION['admin'])){
     $id=$_SESSION['id'];
 }
 else{
-    header("Location: connexionAcheteur.php");
+    header("Location: connexionVendeur.php");
 }
 
     class Database
@@ -52,7 +52,7 @@ else{
     }
      
     $db = Database::connect();
-    $statement = $db->prepare("SELECT article.id, article.image, article.nom, article.description, article.prix, article.type, article.categorie FROM article WHERE article.id = ?");
+    $statement = $db->prepare("SELECT article.id, article.image, article.nom, article.description, article.date, article.prix, article.type, article.categorie FROM article WHERE article.id = ?");
     $statement->execute(array($id2));
     $article = $statement->fetch();
     Database::disconnect();
@@ -64,6 +64,9 @@ else{
       $data = htmlspecialchars($data);
       return $data;
     }
+
+
+   
 
 ?>
 
@@ -156,6 +159,7 @@ else{
 
                     </br>
                 <p><b>Prix:</b><?php echo '  '.$article['prix'];?>€</p>
+                <p><b>Date:</b><?php echo '  '.$article['date'];?></p>
                    
                     <?php 
                         
@@ -179,16 +183,21 @@ else{
                             
                                 while($nego = $statement2->fetch()) 
                                 {
-                                    echo '<tr style="text-align:center">';
+                                    if($nego['offre'] != 0)
+                                    {
+                                        echo '<tr style="text-align:center">';
                                     echo '<td>'. $nego['offre'] . '€</td>';
                                     
 
                                     echo '<td>';
-                                    echo '<a type="button" class="btn btn-info" href="">Oui</a>';
                                     echo ' ';
-                                    echo '<a type="button" class="btn btn-danger" href="">Non</a>';
+                                    echo '<a type="button" class="btn btn-warning" href="valider.php?id='.$nego['id'].'">Oui</a> ';
+                                    echo ' ';
+                                    echo '<a type="button" class="btn btn-danger" href="refuser.php?id='.$nego['id'].'">Non</a>';
                                     echo '</td>';
                                     echo '</tr>';
+                                    }
+                                    
                                 }
                                 Database::disconnect();
                       

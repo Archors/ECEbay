@@ -1,3 +1,5 @@
+/*CSS pour afficher la barre de recherche*/
+
 .recherche {
         height: 50px;
         text-align: center;
@@ -23,6 +25,7 @@
         text-align: center;
     }
     
+/*CSS pour le bouton de commande*/
     .btn-order {
         width: 50%;
         padding: 4px;
@@ -35,9 +38,10 @@
     .info {
         text-align: center;
         margin: 0 auto;
-        height: 300px;
+       
     }
-    /*Page catégorie*/
+
+/*CSS pour afficher le caroussel*/
     
     .typetitre {
         margin-top: 20px;
@@ -59,6 +63,7 @@
         background: #ddd;
     }
     
+/*CSS progression du caroussel*/
     #skills .progress-bar {
         background: #FA1D5D;
     }
@@ -83,18 +88,19 @@
         background-color: #000;
     }
     
-    
+ /*CSS pour afficher le caroussel*/   
 #carousel_ECEBay{
     width:100%;
     margin:0 auto;
     margin-top:-40px;
 }
 
+/*CSS pour afficher image du caroussel*/
 .carousel-item img{
     width:100%;
     height:auto;
 }
-
+/*CSS pour afficher titre du caroussel*/
 .carousel_titre{
 font-family: Open Sans;
 font-style: normal;
@@ -104,7 +110,7 @@ color: #FFFFFF;
 text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
 padding-bottom:5px;
 }
-
+/*CSS pour afficher "logo" decouvir du caroussel*/
 .carousel_carre{
 width: 255px;
 height: 65px;

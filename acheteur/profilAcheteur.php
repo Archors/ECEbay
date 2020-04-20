@@ -44,7 +44,7 @@ else{
 
 
         $db = Database::connect();
-        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail, acheteur.telephone, acheteur.pays, acheteur.ville, acheteur.codepostal, acheteur.adresse1, acheteur.adresse2, acheteur.typecarte, acheteur.nomcarte, acheteur.codecarte, acheteur.datecarte FROM acheteur WHERE acheteur.id = ?");
+        $statement = $db->prepare("SELECT acheteur.id, acheteur.pseudo, acheteur.nom, acheteur.prenom, acheteur.mail, acheteur.telephone, acheteur.pays, acheteur.ville, acheteur.codepostal, acheteur.adresse1, acheteur.adresse2, acheteur.typecarte, acheteur.nomcarte, acheteur.codecarte, acheteur.datecarte, acheteur.solde, acheteur.negocie, acheteur.enchere FROM acheteur WHERE acheteur.id = ?");
         $statement->execute(array($id));
         $acheteur = $statement->fetch();
         Database::disconnect();
@@ -115,22 +115,27 @@ else{
                 <p><b>Téléphone:</b><?php echo ' '.$acheteur['telephone'];?></p>
                 <p><b>Pays:</b> <?php echo ' '.$acheteur['pays'];?></p>
                 <p><b>Ville:</b> <?php echo ' '.$acheteur['ville'];?></p>
+                   <p><b>Code postal:</b> <?php echo ' '.$acheteur['codepostal'];?></p>
+                <p><b>Adresse 1:</b> <?php echo ' '.$acheteur['adresse1'];?></p>
+                
+                <p><b>Adresse 2:</b> <?php echo ' '.$acheteur['adresse2'];?></p>
                 
                 
            </br> </br>    
                    
                </div>
         <div class="col-md-6">
-                <p><b>Code postal:</b> <?php echo ' '.$acheteur['codepostal'];?></p>
-                <p><b>Adresse 1:</b> <?php echo ' '.$acheteur['adresse1'];?></p>
                 
-                <p><b>Adresse 2:</b> <?php echo ' '.$acheteur['adresse2'];?></p>
                 
                 <p><b>Type de carte:</b> <?php echo ' '.$acheteur['typecarte'];?></p> 
                 
                 <p><b>Nom de carte:</b> <?php echo ' '.$acheteur['nomcarte'];?></p>
                 <p><b>Code de carte:</b><?php echo ' '.$acheteur['codecarte'];?></p>
                 <p><b>Date de carte:</b> <?php echo ' '.$acheteur['datecarte'];?></p>
+            <p><b>Solde:</b> <?php echo ' '.$acheteur['solde'];?></p>
+                <p><b>Négociation gagnée:</b> <?php echo ' '.$acheteur['negocie'];?></p>
+                
+                <p><b>Enchère gagné:</b> <?php echo ' '.$acheteur['enchere'];?></p>
                
                 
            </br> </br>    

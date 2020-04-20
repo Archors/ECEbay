@@ -105,8 +105,8 @@ $pseudoError = $mailError = $passwordError= $nomError= $prenomError = $pseudo = 
         if($isSuccess) 
         {
             $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO acheteur (pseudo, mail, password, prenom, nom) values(?, ?, ?, ?, ?)");
-            $statement->execute(array($pseudo, $mail,$password,$prenom,$nom));
+            $statement = $db->prepare("INSERT INTO acheteur (pseudo, mail, password, prenom, nom, solde) values(?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($pseudo, $mail,$password,$prenom,$nom, 10000));
             Database::disconnect();
 
 
@@ -140,7 +140,7 @@ $pseudoError = $mailError = $passwordError= $nomError= $prenomError = $pseudo = 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
 
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="acheteur.css">
         
     </head>
     
@@ -165,7 +165,7 @@ $pseudoError = $mailError = $passwordError= $nomError= $prenomError = $pseudo = 
         </div>    
             
        <div class="container">
-            <form class="form" action="inscriptionAcheteur.php" role="form" method="post" enctype="multipart/form-data">
+            <form action="inscriptionAcheteur.php" role="form" method="post" enctype="multipart/form-data">
            <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
@@ -200,7 +200,7 @@ $pseudoError = $mailError = $passwordError= $nomError= $prenomError = $pseudo = 
                 </div>
                
                 <div class="form-actions"  style="margin:0 auto">
-                        <button type="submit" class="btn btn-success"></span> Ajouter</button> 
+                        <button type="submit" class="btn btn_sub"> <span class="btn_sub_text2"> Ajouter </span> </button>
                    </div>
                </div>
                    

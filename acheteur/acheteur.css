@@ -1,19 +1,23 @@
 .totalpanier{
-    padding:10px;
-    width:300px;
-    background:#DCDCDC;
-    border-radius: 5px;
+    padding:20px;
+    width:400px;
+    background:#353434;
+    border-radius: 10px;
    
 }
 
 .passercommande{
     width:100%;
-    background:#000;
-    border-radius: 10px;
-    color:#fff;
+    background:#FFFFFF;
+    border-radius: 5px;
+    color:#000000;
     border-width:1px;
     border-style:solid;
     border-color:black;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
     
 }
 .titrecat{
@@ -50,19 +54,39 @@ background: #F8F7F6;
 }
 
 
+/* J'ai modifié */
 .btn_sub{
-  width: 489px;
-height: 70px;
-background: #A09776;
-border-radius: 20px;
+background: #353434;
+height: 58px;
+width: 326px;
+border-radius:10px;
 }
 
-.btn_sub_text2{
-font-family: Roboto;
-font-weight: bold;
-font-size: 30px;
+/* J'ai modifié */
 
-color: #000000;
+.btn_sub_text2{
+font-family: Open Sans;
+font-weight: bold;
+font-size: 25px;
+align-items: center;
+text-align: center;
+color: #FFFFFF;
+}
+
+
+::placeholder{
+    color:white;
+    font-family: Open Sans;
+    font-style: italic;
+}
+
+.montant {
+color:#FFFFFF;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+
 }
 
 
@@ -86,9 +110,14 @@ color: #000000;
 
 
 .form{
-margin:0 auto;
-    text-align:center;
-
+background: rgba(53,52,52, 0.7);
+border-radius: 5px;
+width: 526px;
+height: 50px;
+font-family: Open Sans;
+font-size: 25px;
+text-align: center;
+color:white;
 }
 .form-actions{
 margin:0 auto;

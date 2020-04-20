@@ -49,13 +49,24 @@ class Database
         $statement = $db->prepare('SELECT * FROM panier WHERE panier.numpanier = ?');
         $statement->execute(array($id));
         
+        
                         while($panier = $statement->fetch()) 
                         {
+                            
                             $statement3 = $db->prepare('SELECT * FROM article WHERE article.type =1 AND article.id = ?');
                             $statement3->execute(array($panier['article']));
                             $article = $statement3->fetch();
-                            $statement4 = $db->prepare("DELETE FROM panier WHERE panier.numpanier = ? AND panier.article = ?");
-                            $statement4->execute(array($id, $article['id']));
+                            
+                            $statement5 = $db->prepare('SELECT acheteur.solde FROM acheteur WHERE acheteur.id = ?');
+                            $statement5->execute(array($id));
+                            $acheteur = $statement5->fetch();
+                            $newsolde= $acheteur['solde']-$article['prix'];
+                            
+                            $statement7 = $db->prepare("UPDATE acheteur set solde = ? WHERE id = ?");
+                            $statement7->execute(array($newsolde,$id));
+                            
+                            $statement4 = $db->prepare("DELETE FROM panier WHERE panier.article = ?");
+                            $statement4->execute(array($article['id']));
                              $statement2 = $db->prepare("DELETE FROM article WHERE article.type =1 AND id = ?");
                             $statement2->execute(array($panier['article']));
                             

@@ -1,4 +1,6 @@
 <?php
+
+//debuter une session et connexion à la base de données
 session_start(); 
 class Database
 {
@@ -36,6 +38,8 @@ class Database
 ?>
 
 <?php 
+//recupération de l'id qui correspond à un des trois type d'achat
+
 if(!empty($_GET['id'])) 
     {
         $id = $_GET['id'];
@@ -43,7 +47,7 @@ if(!empty($_GET['id']))
 
 ?>
 
-
+<!-- page html -->
 
 <!DOCTYPE html>
 <html>
@@ -69,6 +73,9 @@ if(!empty($_GET['id']))
              $('.header').height($(window).height());
              });
         </script>
+        
+        <!-- script pour l'affichage des différents type -->
+        
         <script>
                     function visibilite(thingId){
             var targetElement;
@@ -120,10 +127,12 @@ if(!empty($_GET['id']))
             <div class="separation"></div>
         </div>
             
+            
+            <!-- partie recherche  -->
         <div class="container-fluid">
              <div class="recherche">
             </br>
-             <form class="form" role="form" action="" methode="post" >
+             <form class="form" role="form" action="rechercher.php" methode="post" >
                    <input type="text" class="form-control" id="recherche" name="recherche" placeholder="recherche" value="">
                </form>
         </div>
@@ -136,12 +145,13 @@ if(!empty($_GET['id']))
             <div class="row">
                 <div class="col-md-2">
                     </br>
-                    <ul>
-                        <li><a onclick="visibilite('1');">Férailles et Trésors</a></li>
-                        <li><a onclick="visibilite('2');">Bons musées</a></li>
-                        <li><a onclick="visibilite('3');">Articles VIP</a></li>
+                <!-- choix de la catégorie, trois choix possivbles -->
+                    <ul style="list-style:none;">
+                        <li><a type="button" class="btn-vue" onclick="visibilite('1');">Férailles et Trésors</a></li>
+                        <li><a type="button" class="btn-vue" onclick="visibilite('2');">Bons musée</a></li>
+                        <li><a type="button" class="btn-vue" onclick="visibilite('3');">Articles VIP</a></li>
                     </ul>
-                <div class="separation"></div>
+               
                 </br>
             </div>
             
@@ -149,29 +159,35 @@ if(!empty($_GET['id']))
   
                  
                 <div id="1" class="items" >
-                    <div class="row">
                     
+                    <h4>Férailles et Trésors</h4>
+                    <div class="separation"></div>
+                    </br>
+                    <div class="row">
+                    <!-- connexionn à la base de données et récupération des informations -->
                    <?php 
                     $db = Database::connect();
+                    //recupération des informations de l'ensemble des articles de la catégorie et du type choisis
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE type=? AND categorie=1');
                     $statement->execute(array($id));
+                    //affichage ligne par ligne de l'ensembles des articles récupérés
                     while ($article = $statement->fetch()) 
                     {
-                 
+                    //affichage des différentes informations 
                         echo '<div class="col-sm-6 col-md-4">
-                    <div class="item">
-                    <img class="imgobj" src="../images/'.$article['image'].'">
-                    <div class="description">
-                        <span class="titre_objet">'.$article['nom'].'</span>
-                        <br>
-                        <span class="description_objet">Ferailles et Trésor</span>
-                        <br>
-                        <span class="description_objet">'.$article['prix'].'€</span>
-                        <br>
-                        <br>
-                        <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
-                    </div>
-                    </div>
+                        <div class="item">
+                        <img class="imgobj" src="../images/'.$article['image'].'">
+                        <div class="description">
+                            <span class="titre_objet">'.$article['nom'].'</span>
+                            <br>
+                            <span class="description_objet">Ferailles et Trésor</span>
+                            <br>
+                            <span class="description_objet">'.$article['prix'].'€</span>
+                            <br>
+                            <br>
+                            <a href="objet.php?id='.$article['id'].'" class="btn btn-order" role=button>Voir</a>
+                        </div>
+                        </div>
                      </br><br><br><br>
                 </div> ';
                     
@@ -182,20 +198,25 @@ if(!empty($_GET['id']))
                 
                 
                 </div> </div>
-                
+                <!-- même chose pour autre catégorie -->
                 <div id="2" class="items" style="display: none;">
         
-
-                 <div class="row">
+                    <h4>Bons musée</h4>
+                    <div class="separation"></div>
+                    </br>
                     
+                    
+                 <div class="row">
+                    <!-- connexionn à la base de données et récupération des informations -->
                    <?php 
                     $db = Database::connect();
+//recupération des informations de l'ensemble des articles de la catégorie et du type choisis
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE type=? AND categorie=2');
                     $statement->execute(array($id));
-                    
+                    //affichage ligne par ligne de l'ensembles des articles récupérés
                     while ($article = $statement->fetch()) 
                     {
-                 
+                 //affichage des différentes informations 
                         echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
                     <img class="imgobj" src="../images/'.$article['image'].'">
@@ -226,17 +247,21 @@ if(!empty($_GET['id']))
 
                 <div id="3" class="items" style="display: none;">
         
+                    <h4>Articles VIP</h4>
+                    <div class="separation"></div>
+                    </br>
 
                  <div class="row">
-                    
+                    <!-- connexionn à la base de données et récupération des informations -->
                    <?php 
                     $db = Database::connect();
+//recupération des informations de l'ensemble des articles de la catégorie et du type choisis
                    $statement = $db->prepare('SELECT article.image, article.nom, article.prix, article.id FROM article WHERE type=? AND categorie=3');
                     $statement->execute(array($id));
-                    
+                    //affichage ligne par ligne de l'ensembles des articles récupérés
                     while ($article = $statement->fetch()) 
                     {
-                 
+                 //affichage des différentes informations 
                         echo '<div class="col-sm-6 col-md-4">
                     <div class="item">
                     <img class="imgobj" src="../images/'.$article['image'].'">

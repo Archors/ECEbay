@@ -46,21 +46,21 @@ else{
 
 }
 
-$offre = $offreError = "";
+$enchere = $enchereError = "";
 
 
     if(!empty($_POST)) 
     {
-        $offre = checkInput($_POST['offre']);
+        $enchere = checkInput($_POST['enchere']);
         
         $isSuccess  = true;
         
         
         
-        if(empty($offre)) 
+        if(empty($enchere)) 
         {
 
-            $offreError = 'Ce champ ne peut pas être vide';
+            $enchereError = 'Ce champ ne peut pas être vide';
             $isSuccess = false;
         } 
         
@@ -69,8 +69,8 @@ $offre = $offreError = "";
         { 
     
             $db = Database::connect();
-            $statement = $db->prepare("INSERT INTO negociation (iditem, idacheteur,offre,compteur) values(?, ?, ?, ?)");
-            $statement->execute(array($id1, $id, $offre, 1));
+            $statement = $db->prepare("INSERT INTO enchere (iditem, idacheteur,montantmax) values(?, ?, ?)");
+            $statement->execute(array($id1, $id, $enchere));
              $statement2 = $db->prepare("INSERT INTO panier (article, numpanier) values(?, ?)");
             $statement2->execute(array($id1, $id));
             Database::disconnect();
@@ -123,7 +123,7 @@ $offre = $offreError = "";
         <div class="container">
         
         <div class="titrecat">
-        Offre
+        Enchère
             <div class="container separation"></div>
         </div>
         <br><br>
@@ -132,14 +132,14 @@ $offre = $offreError = "";
             
        <div class="container">
            
-        <form class="form" action="offre.php?id=<?php echo $id1; ?>" role="form" method="post" enctype="multipart/form-data" >
+        <form class="form" action="enchere.php?id=<?php echo $id1; ?>" role="form" method="post" enctype="multipart/form-data" >
             <div class="form-group">
-                        <label for="offre">Faire une offre:</label>
-                        <input type="number" step="0.01" class="form-control" id="offre" name="offre" placeholder="offre" value="<?php echo $offre;?>">
-                        <span class="help-inline"><?php echo $offreError;?></span>
+                        <label for="enchere">Enchérir:</label>
+                        <input type="number" step="0.01" class="form-control" id="enchere" name="enchere" placeholder="Enchère" value="<?php echo $enchere;?>">
+                        <span class="help-inline"><?php echo $enchereError;?></span>
             </div>
            <div class="form-actions">
-                        <button type="submit" class="offre"><span class="glyphicon glyphicon-pencil"></span> Offre</button>
+                        <button type="submit" class="offre"><span class="glyphicon glyphicon-pencil"></span>Enchérir</button>
                         
            </div>
         </form>

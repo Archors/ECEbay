@@ -52,6 +52,9 @@ class Database
                               {
                                 if (password_verify($password, $vendeur['motdepasse'])) {
                                     $test=$vendeur['id'];
+                                    $_SESSION = array();
+                                    session_destroy();
+                                    session_start();
                                     $_SESSION['id'] = $vendeur['id'];
                                     $_SESSION['vendeur'] = 'vendeur';
                                 header("Location: espace_vendeur.php");
