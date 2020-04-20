@@ -63,7 +63,7 @@
                 </div>
 
                 <div align=left>
-                 <button type="submit" class="btn_bg btn_text2"> <span class="btn_text"> Enchérir </span> </button>
+                 <button type="submit" class="btn_bg btn_text2"> <a href="../acheteur/Panier.php" class="btn_text"> Enchérir </span> </button>
                 </form>
                 </div>
 

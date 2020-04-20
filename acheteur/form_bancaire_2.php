@@ -31,7 +31,7 @@
         </div>
 
 <div class="container_fluid">
-        <div class="corps">
+
             <br>
 
 
@@ -79,30 +79,23 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                      <div class="mx-sm-3 mb-2">
-
-                        <!-- Vérifier que pseudo existe pas déjà -->
-                    
-                         <input class="form-control form text_form" id="#" placeholder="Nom du titulaire">
-                      </div>
+                    <div align="center">
+                      <input class="form" id="#" placeholder="Nom du Titulaire">
+                    </div>
                   </div>
                 </div>
+                <br>
+
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="mx-sm-3 mb-2">
-
-                        <!-- Vérifier que email existe pas déjà -->
-
-                         <input class="form-control form text_form" id="#" placeholder="Numéro Carte">                                         
-                      </div>
+                    <div align="center">
+                      <input class="form" id="#" placeholder="Numéro Carte">
                     </div>
+                  </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="mx-sm-3 mb-2">
+                <br>
 
-                        
-
+<<<<<<< HEAD:acheteur/form_bancaire_2.php
 
 <input class="form-control form text_form" type="month" id="#" min="2020-04">     
                     </div> 
@@ -110,40 +103,41 @@
                     </div>
                   </div>
                 
+=======
+                <div class="row">
+
+                      <div class="col-md-2 offset-md-3">
+                        <input class="form_1" type="month" id="#" min="2020-04">  
+                      </div>
+
+                      <div class="col-md-2 offset-md-1">
+                        <input class="form_1" id="#" placeholder="Cryptogramme">
+                      </div>
+
+                </div>
+                <br> 
+>>>>>>> bemilien:acheteur/form_bancaire_2.php
 
 
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="mx-sm-3 mb-2">
-
-                        <!-- Vérifier que pseudo existe pas déjà -->
-                    
-                         <input class="form-control form text_form" id="#" placeholder="Cryptogramme">
+                    <div align="center">
+                       <button type="submit" class="btn_sub"> <a href="../acheter/objet_achete.php" class="btn_sub_text2"> Confirmer </a> </button>         
                     </div>
                   </div>
-                </div>
+                </div>  
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="mx-sm-3 mb-2">
+          </form>
 
-                        <input class="form-control form text_form" id="#" placeholder="Numéro de Téléphone">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                 <button type="submit" class="btn_sub"> <span class="btn_sub_text2"> Confirmer </span> </button>              
-                  </div>
-                </div>
-
-                </form>
-            </div>
-            </div>
 
 
             </div>
+          </div>
 
+<<<<<<< HEAD:acheteur/form_bancaire_2.php
+=======
+
+>>>>>>> bemilien:acheteur/form_bancaire_2.php
       <?php include '../template/footer.php'; ?>
 
 

@@ -40,7 +40,7 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active" style="background-image:url(../images/wallpaper_tresor.jpeg)">
+                <div class="carousel-item active" style="background-image:url(../images/carousel1.jpeg)">
                     <center><h1 style="color:white"><b>Férailles et Trésors</b></h1></center>
                     <br><br>
                 </div>

@@ -4,6 +4,7 @@
 /*header*/
 
 .header {
+<<<<<<< HEAD
     height: 70px;
     left: 0px;
     top: 0px;
@@ -12,6 +13,14 @@
 
 .navbar {
     background: #000;
+=======
+    height: 170px;
+    background: #fff;
+}
+
+.navbar {
+    background: #353434;
+>>>>>>> bemilien
 }
 
 .nav-link,
@@ -21,7 +30,11 @@
 }
 
 .nav-link {
+<<<<<<< HEAD
     margin-right: 1em !important;
+=======
+    margin-right: 70px;
+>>>>>>> bemilien
 }
 
 .nav-link:hover {
@@ -41,16 +54,44 @@
 }
 
 #content-wrap {
+<<<<<<< HEAD
     padding-bottom: 345px;
 }
 
 .titrecat {
     font-family: Ribeye Marrow;
+=======
+    padding-bottom: 2.5rem;
+}
+
+.titrecat {
+    font-family: Open Sans;
+>>>>>>> bemilien
     font-size: 80px;
     text-align: center;
     color: #000;
 }
 
+<<<<<<< HEAD
+=======
+.sous_titre {
+    font-family: Open Sans;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+
+.petit_texte {
+    font-family: Open Sans;
+    font-size: 10px;
+    text-align: center;
+    color: #000000 ;
+}
+
+
+>>>>>>> bemilien
 .separation {
     height: 0px;
     margin-left: auto;
@@ -63,10 +104,20 @@
 
 /*footer*/
 
+<<<<<<< HEAD
 footer {
     background: #394351;
     color: #fff;
     position: absolute;
     bottom: 0;
     width: 100%;
+=======
+.footer {
+    background: #394351;
+    font-family: Open Sans;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    bottom:0px;
+>>>>>>> bemilien
 }
