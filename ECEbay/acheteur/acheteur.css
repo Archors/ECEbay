@@ -1,0 +1,149 @@
+.totalpanier{
+    padding:20px;
+    width:400px;
+    background:#353434;
+    border-radius: 10px;
+   
+}
+
+.passercommande{
+    width:100%;
+    background:#FFFFFF;
+    border-radius: 5px;
+    color:#000000;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    
+}
+.titrecat{
+
+font-family: Ribeye Marrow;
+
+font-size: 80px;
+
+text-align: center;
+
+color: #4F4537;
+
+}
+
+.separation{
+
+height: 0px;
+    margin-left: auto;
+    margin-right: auto;
+
+top: 345px;
+
+border: 1px solid #000;
+    text-align: center;
+}
+
+
+
+
+.corps{
+top: 373px;
+
+background: #F8F7F6;
+}
+
+
+/* J'ai modifié */
+.btn_sub{
+background: #353434;
+height: 58px;
+width: 326px;
+border-radius:10px;
+}
+
+/* J'ai modifié */
+
+.btn_sub_text2{
+font-family: Open Sans;
+font-weight: bold;
+font-size: 25px;
+align-items: center;
+text-align: center;
+color: #FFFFFF;
+}
+
+/* Placerholder */
+::placeholder{
+    color:white;
+    font-family: Open Sans;
+    font-style: italic;
+}
+
+.montant {
+color:#FFFFFF;
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 25px;
+
+}
+
+
+.text_form{
+font-family: Roboto;
+font-style: italic;
+font-size: 30px;
+text-align: center;
+
+color: #000000;
+}
+.image_bancaire_CB{
+	height: 170px;
+}
+.image_bancaire_MCard{
+	height: 181px;
+}
+.image_bancaire_AX{
+	height: 178px;
+}
+
+/* formulaire */
+
+.form{
+background: rgba(53,52,52, 0.7);
+border-radius: 5px;
+width: 526px;
+height: 50px;
+font-family: Open Sans;
+font-size: 25px;
+text-align: center;
+color:white;
+}
+.form-actions{
+margin:0 auto;
+    text-align:center;
+
+}
+
+
+/* ajouter */
+.ajouter{
+margin:0 auto;
+    text-align:center;
+
+}
+
+
+/* offre */
+.offre
+{
+     width:100px;
+    height:45px;
+    background:#000;
+    border-radius: 10px;
+    color:#fff;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+}
